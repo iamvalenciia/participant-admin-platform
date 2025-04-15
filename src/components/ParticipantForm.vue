@@ -8,7 +8,6 @@
           v-model="form.full_name"
           type="text"
           class="input"
-          readonly
         />
       </div>
 

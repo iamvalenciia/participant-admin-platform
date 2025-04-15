@@ -1,12 +1,36 @@
 <template>
   <div>
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
-        Gestión de Participantes
-      </h1>
-      <p class="mt-2 text-gray-600 dark:text-gray-400">
-        Busca y gestiona la información de los participantes registrados.
-      </p>
+    <div class="mb-8 flex justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+          Gestión de Participantes
+        </h1>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
+          Busca y gestiona la información de los participantes registrados.
+        </p>
+      </div>
+
+      <!-- Nuevo botón para crear participante -->
+      <button
+        v-if="userId === 'ca544172-2460-4959-9c59-7d7e1ad57568'"
+        @click="openCreateModal"
+        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+      >
+        <svg
+          class="-ml-1 mr-2 h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        Crear Participante
+      </button>
     </div>
 
     <div class="mb-6">
@@ -84,7 +108,7 @@
           {{
             searchQuery && searchHasStarted
               ? "No se encontraron participantes con ese nombre."
-              : "Esperando búsqueda..."
+              : "Ingresa un nombre para buscar participantes."
           }}
         </p>
       </div>
@@ -177,6 +201,49 @@
         </table>
       </div>
     </div>
+
+    <!-- Modal para crear participante -->
+    <div
+      v-if="showCreateModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+              Crear Nuevo Participante
+            </h2>
+            <button
+              @click="closeCreateModal"
+              class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              <svg
+                class="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <participant-form
+            :saving="saving"
+            @submit="handleCreateSubmit"
+            @cancel="closeCreateModal"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -185,10 +252,14 @@ import { ref, computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useParticipantsStore } from "@/stores/participants";
 import { useAuthStore } from "@/stores/auth";
+import ParticipantForm from "@/components/ParticipantForm.vue";
+import { Participant } from "@/supabase";
 
 const router = useRouter();
 const participantsStore = useParticipantsStore();
 const authStore = useAuthStore();
+
+const userId = computed(() => authStore.user.id);
 
 const searchQuery = ref(participantsStore.lastSearchQuery || "");
 const searchTimeout = ref<number | null>(null);
@@ -198,6 +269,8 @@ const loading = computed(() => participantsStore.loading);
 const error = computed(() => participantsStore.error);
 
 const searchHasStarted = ref(false);
+const showCreateModal = ref(false);
+const saving = ref(false);
 
 watch(
   () => participantsStore.lastSearchQuery,
@@ -236,6 +309,38 @@ const fetchParticipants = () => {
 // Función para ver el detalle de un participante
 const viewParticipant = (id: number) => {
   router.push(`/participant/${id}`);
+};
+
+// Función para abrir el modal de creación
+const openCreateModal = () => {
+  showCreateModal.value = true;
+};
+
+// Función para cerrar el modal de creación
+const closeCreateModal = () => {
+  showCreateModal.value = false;
+};
+
+// Función para manejar el envío del formulario de creación
+const handleCreateSubmit = async (data: Partial<Participant>) => {
+  saving.value = true;
+  try {
+    const result = await participantsStore.createParticipant(data);
+    if (result.success) {
+      closeCreateModal();
+      // Si hay un ID, redirigir a la página de detalles
+      if (result.data && result.data.id) {
+        router.push(`/participant/${result.data.id}`);
+      }
+    } else {
+      // Mostrar error (puedes implementar un sistema de notificaciones)
+      console.error("Error al crear participante:", result.error);
+    }
+  } catch (error) {
+    console.error("Error inesperado:", error);
+  } finally {
+    saving.value = false;
+  }
 };
 
 // Modificar la sección onMounted

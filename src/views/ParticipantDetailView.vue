@@ -22,6 +22,15 @@
         </button>
       </div>
 
+      <!-- Botón de eliminar -->
+      <button
+        v-if="!isEditing && userId === 'ca544172-2460-4959-9c59-7d7e1ad57568'"
+        @click="confirmDelete"
+        class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+      >
+        Eliminar
+      </button>
+
       <div v-if="participant">
         <button
           v-if="!isEditing"
@@ -368,6 +377,61 @@
         No se encontró información del participante.
       </p>
     </div>
+    <!-- Modal de confirmación para eliminar -->
+    <div
+      v-if="showDeleteModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full"
+      >
+        <div class="p-6">
+          <div class="text-center mb-6">
+            <svg
+              class="h-12 w-12 text-red-600 mx-auto"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-4">
+              Confirmar eliminación
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-400 mt-2">
+              ¿Estás seguro de que deseas eliminar a
+              <span class="font-semibold">{{ participant?.full_name }}</span
+              >? Esta acción no se puede deshacer.
+            </p>
+          </div>
+
+          <div class="flex justify-center space-x-4">
+            <button
+              @click="cancelDelete"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Cancelar
+            </button>
+
+            <button
+              @click="deleteParticipant"
+              :disabled="deleting"
+              class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-70"
+            >
+              {{ deleting ? "Eliminando..." : "Sí, eliminar" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -377,11 +441,14 @@ import { useRoute, useRouter } from "vue-router";
 import { useParticipantsStore } from "@/stores/participants";
 import { useAuthStore } from "@/stores/auth";
 import type { Participant } from "@/lib/supabase";
+import { User } from "@supabase/supabase-js";
 
 const route = useRoute();
 const router = useRouter();
 const participantsStore = useParticipantsStore();
 const authStore = useAuthStore();
+
+const userId = authStore.user.id;
 
 const participant = computed(() => participantsStore.currentParticipant);
 const loading = computed(() => participantsStore.loading);
@@ -390,6 +457,9 @@ const error = computed(() => participantsStore.error);
 const isEditing = ref(false);
 const saving = ref(false);
 const editForm = ref<Partial<Participant>>({});
+
+const showDeleteModal = ref(false);
+const deleting = ref(false);
 
 // Función para cargar los datos del participante
 const loadParticipant = async () => {
@@ -444,6 +514,37 @@ const saveChanges = async () => {
     }
   } finally {
     saving.value = false;
+  }
+};
+
+// Función para abrir el modal de confirmación de eliminación
+const confirmDelete = () => {
+  showDeleteModal.value = true;
+};
+
+// Función para cancelar la eliminación
+const cancelDelete = () => {
+  showDeleteModal.value = false;
+};
+
+// Función para eliminar el participante
+const deleteParticipant = async () => {
+  if (!participant.value) return;
+
+  deleting.value = true;
+
+  try {
+    const result = await participantsStore.deleteParticipant(
+      participant.value.id
+    );
+
+    if (result.success) {
+      showDeleteModal.value = false;
+      // Redirigir a la página principal después de eliminar
+      router.push("/");
+    }
+  } finally {
+    deleting.value = false;
   }
 };
 

@@ -102,6 +102,39 @@ export const useParticipantsStore = defineStore("participants", () => {
     }
   };
 
+  // Crear un nuevo participante
+  const createParticipant = async (data: Partial<Participant>) => {
+    if (!authStore.isAuthenticated())
+      return { success: false, error: "No autenticado" };
+
+    loading.value = true;
+
+    try {
+      const { data: createdData, error: createError } = await supabase
+        .from("participants")
+        .insert(data)
+        .select()
+        .single();
+
+      if (createError) throw createError;
+
+      currentParticipant.value = createdData as Participant;
+
+      // Si hay una búsqueda activa, actualizar la lista
+      if (searchQuery.value) {
+        fetchParticipants(searchQuery.value);
+      }
+
+      return { success: true, data: createdData };
+    } catch (err: any) {
+      console.error("Error al crear participante:", err);
+      error.value = err.message || "Error al crear el participante";
+      return { success: false, error: error.value };
+    } finally {
+      loading.value = false;
+    }
+  };
+
   // Actualizar un participante
   const updateParticipant = async (id: number, data: Partial<Participant>) => {
     if (!authStore.isAuthenticated())
@@ -137,6 +170,39 @@ export const useParticipantsStore = defineStore("participants", () => {
     }
   };
 
+  // Eliminar un participante
+  const deleteParticipant = async (id: number) => {
+    if (!authStore.isAuthenticated())
+      return { success: false, error: "No autenticado" };
+
+    loading.value = true;
+
+    try {
+      const { error: deleteError } = await supabase
+        .from("participants")
+        .delete()
+        .eq("id", id);
+
+      if (deleteError) throw deleteError;
+
+      // Limpiar el participante actual si es el que se está eliminando
+      if (currentParticipant.value && currentParticipant.value.id === id) {
+        currentParticipant.value = null;
+      }
+
+      // Eliminar el participante de la lista si existe
+      participants.value = participants.value.filter((p) => p.id !== id);
+
+      return { success: true };
+    } catch (err: any) {
+      console.error(`Error al eliminar participante id=${id}:`, err);
+      error.value = err.message || "Error al eliminar el participante";
+      return { success: false, error: error.value };
+    } finally {
+      loading.value = false;
+    }
+  };
+
   return {
     participants,
     currentParticipant,
@@ -146,7 +212,9 @@ export const useParticipantsStore = defineStore("participants", () => {
     lastSearchQuery,
     fetchParticipants,
     fetchParticipantById,
+    createParticipant,
     updateParticipant,
+    deleteParticipant,
     setupRealtimeSubscription,
   };
 });
