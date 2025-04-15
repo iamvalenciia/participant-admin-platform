@@ -36,6 +36,7 @@ The application was built using:
 - Vue Router for application routing
 - Vue I18n for internationalization (supporting English and Spanish)
 - Supabase JavaScript client for database interactions
+  -Tailwind CSS for styling
 
 # Useful Websites
 
