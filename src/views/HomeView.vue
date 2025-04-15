@@ -289,6 +289,8 @@ const handleSearch = () => {
   searchHasStarted.value = !!searchQuery.value.trim();
 
   searchTimeout.value = setTimeout(() => {
+    // Actualizar el store con la consulta actual
+    participantsStore.searchQuery = searchQuery.value;
     fetchParticipants();
   }, 300) as unknown as number;
 };
@@ -296,7 +298,10 @@ const handleSearch = () => {
 // Función para limpiar la búsqueda
 const clearSearch = () => {
   searchQuery.value = "";
+  participantsStore.searchQuery = "";
+  participantsStore.lastSearchQuery = "";
   searchHasStarted.value = false;
+  participants.value = []; // Limpiar resultados directamente
   fetchParticipants(); // Esto ahora establecerá participants como un array vacío
 };
 

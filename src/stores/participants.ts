@@ -14,6 +14,8 @@ export const useParticipantsStore = defineStore("participants", () => {
   const authStore = useAuthStore();
 
   // Obtener participantes con búsqueda
+  // In your participants store, replace the fetchParticipants function with this:
+
   const fetchParticipants = async (query: string = "") => {
     if (!authStore.isAuthenticated()) return;
 
@@ -32,11 +34,24 @@ export const useParticipantsStore = defineStore("participants", () => {
     lastSearchQuery.value = query;
 
     try {
-      // Realizar búsqueda de texto
-      const { data, error: queryError } = await supabase
-        .from("participants")
-        .select("*")
-        .textSearch("full_name", query);
+      // Formatea la consulta para búsqueda de texto adecuadamente
+      // En lugar de usar textSearch directamente, hacemos un ilike para cada palabra
+      let supabaseQuery = supabase.from("participants").select("*");
+
+      // Si hay múltiples palabras, aplicamos un filtro ilike para cada una
+      const words = query.trim().split(/\s+/);
+
+      if (words.length === 1) {
+        // Si solo hay una palabra, usamos ilike simple
+        supabaseQuery = supabaseQuery.ilike("full_name", `%${words[0]}%`);
+      } else {
+        // Para múltiples palabras, aplicamos un filtro AND para cada palabra
+        words.forEach((word, index) => {
+          supabaseQuery = supabaseQuery.ilike("full_name", `%${word}%`);
+        });
+      }
+
+      const { data, error: queryError } = await supabaseQuery;
 
       if (queryError) throw queryError;
 
