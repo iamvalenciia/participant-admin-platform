@@ -6,7 +6,7 @@ The application integrates with Supabase cloud database services to store and re
 
 This project was created to streamline the administrative process for church staff managing youth activities, eliminating paper-based systems and reducing errors in participant information management.
 
-[Link of the Website](https://pfj-admin.netlify.app/)
+[Link of the Website ](https://pfj-admin.netlify.app/)
 
 # Cloud Database
 
