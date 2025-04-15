@@ -1,23 +1,23 @@
 <template>
   <div
-    class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8"
+    class="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-8"
   >
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2
           class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white"
         >
-          Iniciar sesión
+          {{ $t("login.title") }}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Sistema de Gestión de Participantes del PFJ 2025
+          {{ $t("login.subtitle") }}
         </p>
       </div>
 
       <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
         <div class="rounded-md shadow-sm space-y-4">
           <div>
-            <label for="email" class="sr-only">Correo electrónico</label>
+            <label for="email" class="sr-only">{{ $t("login.email") }}</label>
             <input
               id="email"
               v-model="email"
@@ -26,11 +26,13 @@
               autocomplete="email"
               required
               class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Correo electrónico"
+              :placeholder="$t('login.email')"
             />
           </div>
           <div>
-            <label for="password" class="sr-only">Contraseña</label>
+            <label for="password" class="sr-only">{{
+              $t("login.password")
+            }}</label>
             <input
               id="password"
               v-model="password"
@@ -39,7 +41,7 @@
               autocomplete="current-password"
               required
               class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Contraseña"
+              :placeholder="$t('login.password')"
             />
           </div>
         </div>
@@ -75,7 +77,7 @@
                 ></path>
               </svg>
             </span>
-            {{ loading ? "Iniciando sesión..." : "Iniciar sesión" }}
+            {{ loading ? $t("login.loading") : $t("login.login_button") }}
           </button>
         </div>
 
@@ -87,13 +89,22 @@
         </div>
       </form>
 
-      <div class="mt-4 text-center">
+      <div class="mt-4 text-center space-y-2">
+        <!-- Botón para cambiar el tema -->
         <button
           @click="toggleTheme"
-          class="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
+          class="inline-block text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 mx-2"
         >
-          <span v-if="isDark">🌞 Cambiar a tema claro</span>
-          <span v-else>🌙 Cambiar a tema oscuro</span>
+          <span v-if="isDark">{{ $t("login.theme_light") }}</span>
+          <span v-else>{{ $t("login.theme_dark") }}</span>
+        </button>
+
+        <!-- Botón para cambiar el idioma -->
+        <button
+          @click="toggleLanguage"
+          class="inline-block text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 mx-2"
+        >
+          {{ $t("common.language") }}
         </button>
       </div>
     </div>
@@ -105,10 +116,12 @@ import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import { useThemeStore } from "@/stores/theme";
+import { useI18n } from "vue-i18n";
 
 const router = useRouter();
 const authStore = useAuthStore();
 const themeStore = useThemeStore();
+const { t, locale } = useI18n();
 
 const email = ref("");
 const password = ref("");
@@ -120,6 +133,13 @@ const toggleTheme = () => {
   themeStore.toggleTheme();
 };
 
+// Función para cambiar el idioma
+const toggleLanguage = () => {
+  const newLocale = locale.value === "es" ? "en" : "es";
+  locale.value = newLocale;
+  localStorage.setItem("locale", newLocale);
+};
+
 const handleLogin = async () => {
   errorMessage.value = "";
 
@@ -128,7 +148,7 @@ const handleLogin = async () => {
   if (result.success) {
     router.push("/");
   } else {
-    errorMessage.value = result.error || "Error al iniciar sesión";
+    errorMessage.value = result.error || t("login.error");
   }
 };
 

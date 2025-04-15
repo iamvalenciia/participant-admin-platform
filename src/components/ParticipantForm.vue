@@ -2,7 +2,9 @@
   <form @submit.prevent="submitForm">
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
-        <label for="full_name" class="form-label"> Nombre completo </label>
+        <label for="full_name" class="form-label">
+          {{ $t("participant_form.full_name") }}
+        </label>
         <input
           id="full_name"
           v-model="form.full_name"
@@ -12,7 +14,9 @@
       </div>
 
       <div>
-        <label for="age" class="form-label"> Edad </label>
+        <label for="age" class="form-label">
+          {{ $t("participant_form.age") }}
+        </label>
         <input
           id="age"
           v-model.number="form.age"
@@ -26,7 +30,7 @@
 
       <div>
         <label for="stake_or_district" class="form-label">
-          Estaca/Distrito
+          {{ $t("participant_form.stake_or_district") }}
         </label>
         <input
           id="stake_or_district"
@@ -38,7 +42,9 @@
       </div>
 
       <div>
-        <label for="ward_or_branch" class="form-label"> Barrio/Rama </label>
+        <label for="ward_or_branch" class="form-label">
+          {{ $t("participant_form.ward_or_branch") }}
+        </label>
         <input
           id="ward_or_branch"
           v-model="form.ward_or_branch"
@@ -49,7 +55,9 @@
       </div>
 
       <div>
-        <label for="group" class="form-label"> Grupo </label>
+        <label for="group" class="form-label">
+          {{ $t("participant_form.group") }}
+        </label>
         <input
           id="group"
           v-model.number="form.group"
@@ -61,7 +69,9 @@
       </div>
 
       <div>
-        <label for="company" class="form-label"> Compañía </label>
+        <label for="company" class="form-label">
+          {{ $t("participant_form.company") }}
+        </label>
         <input
           id="company"
           v-model.number="form.company"
@@ -73,7 +83,9 @@
       </div>
 
       <div>
-        <label for="shirt_size" class="form-label"> Talla de camiseta </label>
+        <label for="shirt_size" class="form-label">
+          {{ $t("participant_form.shirt_size") }}
+        </label>
         <select id="shirt_size" v-model="form.shirt_size" class="input">
           <option value="">Sin especificar</option>
           <option value="XS">XS</option>
@@ -86,13 +98,15 @@
       </div>
 
       <div>
-        <label for="room" class="form-label"> Habitación </label>
+        <label for="room" class="form-label">
+          {{ $t("participant_form.room") }}
+        </label>
         <input id="room" v-model="form.room" type="text" class="input" />
       </div>
 
       <div class="sm:col-span-2">
         <label for="medical_treatment" class="form-label">
-          Tratamiento médico
+          {{ $t("participant_form.medical_treatment") }}
         </label>
         <textarea
           id="medical_treatment"
@@ -103,7 +117,9 @@
       </div>
 
       <div class="sm:col-span-2">
-        <label for="allergies" class="form-label"> Alergias </label>
+        <label for="allergies" class="form-label">
+          {{ $t("participant_form.allergies") }}
+        </label>
         <textarea
           id="allergies"
           v-model="form.allergies"
@@ -115,10 +131,12 @@
 
     <div class="mt-6 flex justify-end space-x-3">
       <button type="button" @click="cancelForm" class="btn btn-outline">
-        Cancelar
+        {{ $t("participant_form.cancel") }}
       </button>
       <button type="submit" :disabled="saving" class="btn btn-primary">
-        {{ saving ? "Guardando..." : "Guardar" }}
+        {{
+          saving ? $t("participant_form.saving") : $t("participant_form.save")
+        }}
       </button>
     </div>
   </form>

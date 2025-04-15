@@ -1,0 +1,77 @@
+{
+  "home": {
+    "title": "Participant Management",
+    "subtitle": "Search and manage registered participants' information.",
+    "create_button": "Create Participant",
+    "search_placeholder": "Search participant by name...",
+    "loading": "Initializing...",
+    "no_results": "No participants found with that name.",
+    "search_prompt": "Enter a name to search for participants.",
+    "table": {
+      "name": "Name",
+      "age": "Age",
+      "stake": "Stake/District",
+      "ward": "Ward/Branch",
+      "group_company": "Group/Company",
+      "actions": "Actions",
+      "view": "View"
+    },
+    "create_modal": {
+      "title": "Create New Participant",
+      "cancel": "Cancel"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "FSY 2025 Participant Management System",
+    "email": "Email",
+    "password": "Password",
+    "login_button": "Sign in",
+    "loading": "Signing in...",
+    "error": "Login error",
+    "theme_light": "🌞 Switch to light theme",
+    "theme_dark": "🌙 Switch to dark theme"
+  },
+  "participant_form": {
+    "full_name": "Full name",
+    "age": "Age",
+    "stake_or_district": "Stake/District",
+    "ward_or_branch": "Ward/Branch",
+    "group": "Group",
+    "company": "Company",
+    "shirt_size": "Shirt size",
+    "room": "Room",
+    "medical_treatment": "Medical treatment",
+    "allergies": "Allergies",
+    "no_size": "Not specified",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "participant_details": {
+    "back_to_list": "Back to list",
+    "edit_info": "Edit information",
+    "delete": "Delete",
+    "loading": "Loading participant information...",
+    "try_again": "Try again",
+    "not_found": "Participant information not found.",
+    "save_changes": "Save changes",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "not_specified": "Not specified",
+    "no_room": "Not assigned",
+    "no_treatment": "None",
+    "no_allergies": "None",
+    "delete_modal": {
+      "title": "Confirm deletion",
+      "message": "Are you sure you want to delete {name}? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Yes, delete",
+      "deleting": "Deleting..."
+    }
+  },
+  "common": {
+    "logout": "Logout",
+    "language": "🌎 Switch to Spanish"
+  }
+}

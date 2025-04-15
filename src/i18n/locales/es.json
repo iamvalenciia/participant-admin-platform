@@ -1,0 +1,77 @@
+{
+  "home": {
+    "title": "Gestión de Participantes",
+    "subtitle": "Busca y gestiona la información de los participantes registrados.",
+    "create_button": "Crear Participante",
+    "search_placeholder": "Buscar participante por nombre...",
+    "loading": "Inicializando...",
+    "no_results": "No se encontraron participantes con ese nombre.",
+    "search_prompt": "Ingresa un nombre para buscar participantes.",
+    "table": {
+      "name": "Nombre",
+      "age": "Edad",
+      "stake": "Estaca/Distrito",
+      "ward": "Barrio/Rama",
+      "group_company": "Grupo/Compañía",
+      "actions": "Acciones",
+      "view": "Ver"
+    },
+    "create_modal": {
+      "title": "Crear Nuevo Participante",
+      "cancel": "Cancelar"
+    }
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "subtitle": "Sistema de Gestión de Participantes del PFJ 2025",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "login_button": "Iniciar sesión",
+    "loading": "Iniciando sesión...",
+    "error": "Error al iniciar sesión",
+    "theme_light": "🌞 Cambiar a tema claro",
+    "theme_dark": "🌙 Cambiar a tema oscuro"
+  },
+  "participant_form": {
+    "full_name": "Nombre completo",
+    "age": "Edad",
+    "stake_or_district": "Estaca/Distrito",
+    "ward_or_branch": "Barrio/Rama",
+    "group": "Grupo",
+    "company": "Compañía",
+    "shirt_size": "Talla de camiseta",
+    "room": "Habitación",
+    "medical_treatment": "Tratamiento médico",
+    "allergies": "Alergias",
+    "no_size": "Sin especificar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "participant_details": {
+    "back_to_list": "Volver a la lista",
+    "edit_info": "Editar información",
+    "delete": "Eliminar",
+    "loading": "Cargando información del participante...",
+    "try_again": "Intentar nuevamente",
+    "not_found": "No se encontró información del participante.",
+    "save_changes": "Guardar cambios",
+    "saving": "Guardando...",
+    "cancel": "Cancelar",
+    "not_specified": "No especificado",
+    "no_room": "No asignada",
+    "no_treatment": "Ninguno",
+    "no_allergies": "Ninguna",
+    "delete_modal": {
+      "title": "Confirmar eliminación",
+      "message": "¿Estás seguro de que deseas eliminar a {name}? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Sí, eliminar",
+      "deleting": "Eliminando..."
+    }
+  },
+  "common": {
+    "logout": "Cerrar Sesión",
+    "language": "🌎 Cambiar a inglés"
+  }
+}

@@ -18,7 +18,7 @@
               clip-rule="evenodd"
             />
           </svg>
-          Volver a la lista
+          {{ $t("participant_details.back_to_list") }}
         </button>
       </div>
 
@@ -28,7 +28,7 @@
         @click="confirmDelete"
         class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
       >
-        Eliminar
+        {{ $t("participant_details.delete") }}
       </button>
 
       <div v-if="participant">
@@ -37,7 +37,7 @@
           @click="startEditing"
           class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
-          Editar información
+          {{ $t("participant_details.edit_info") }}
         </button>
       </div>
     </div>
@@ -50,7 +50,7 @@
         class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 dark:border-indigo-400"
       ></div>
       <p class="mt-4 text-gray-600 dark:text-gray-400">
-        Cargando información del participante...
+        {{ $t("participant_details.loading") }}
       </p>
     </div>
 
@@ -68,7 +68,7 @@
         @click="loadParticipant"
         class="mt-4 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
-        Intentar nuevamente
+        {{ $t("participant_details.try_again") }}
       </button>
     </div>
 
@@ -90,7 +90,7 @@
                 for="full_name"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Nombre completo
+                {{ $t("participant_form.full_name") }}
               </label>
               <input
                 id="full_name"
@@ -107,7 +107,7 @@
                 for="age"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Edad
+                {{ $t("participant_form.age") }}
               </label>
               <input
                 id="age"
@@ -126,7 +126,7 @@
                 for="stake_or_district"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Estaca/Distrito
+                {{ $t("participant_form.stake_or_district") }}
               </label>
               <input
                 id="stake_or_district"
@@ -143,7 +143,7 @@
                 for="ward_or_branch"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Barrio/Rama
+                {{ $t("participant_form.ward_or_branch") }}
               </label>
               <input
                 id="ward_or_branch"
@@ -160,7 +160,7 @@
                 for="group"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Grupo
+                {{ $t("participant_form.group") }}
               </label>
               <input
                 id="group"
@@ -177,7 +177,7 @@
                 for="company"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Compañía
+                {{ $t("participant_form.company") }}
               </label>
               <input
                 id="company"
@@ -194,14 +194,14 @@
                 for="shirt_size"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Talla de camiseta
+                {{ $t("participant_form.shirt_size") }}
               </label>
               <select
                 id="shirt_size"
                 v-model="editForm.shirt_size"
                 class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white sm:text-sm rounded-md"
               >
-                <option value="">Sin especificar</option>
+                <option value="">{{ $t("participant_form.no_size") }}</option>
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -216,7 +216,7 @@
                 for="room"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Habitación
+                {{ $t("participant_form.room") }}
               </label>
               <input
                 id="room"
@@ -231,7 +231,7 @@
                 for="medical_treatment"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Tratamiento médico
+                {{ $t("participant_form.medical_treatment") }}
               </label>
               <textarea
                 id="medical_treatment"
@@ -246,7 +246,7 @@
                 for="allergies"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Alergias
+                {{ $t("participant_form.allergies") }}
               </label>
               <textarea
                 id="allergies"
@@ -263,14 +263,18 @@
               @click="cancelEditing"
               class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              Cancelar
+              {{ $t("participant_details.cancel") }}
             </button>
             <button
               type="submit"
               :disabled="saving"
               class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-70"
             >
-              {{ saving ? "Guardando..." : "Guardar cambios" }}
+              {{
+                saving
+                  ? $t("participant_details.saving")
+                  : $t("participant_details.save_changes")
+              }}
             </button>
           </div>
         </form>
@@ -278,7 +282,7 @@
         <div v-else class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Nombre completo
+              {{ $t("participant_form.full_name") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.full_name }}
@@ -287,7 +291,7 @@
 
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Edad
+              {{ $t("participant_form.age") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.age }}
@@ -296,7 +300,7 @@
 
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Estaca/Distrito
+              {{ $t("participant_form.stake_or_district") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.stake_or_district }}
@@ -305,7 +309,7 @@
 
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Barrio/Rama
+              {{ $t("participant_form.ward_or_branch") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.ward_or_branch }}
@@ -314,7 +318,7 @@
 
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Grupo
+              {{ $t("participant_form.group") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.group }}
@@ -323,7 +327,7 @@
 
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Compañía
+              {{ $t("participant_form.company") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.company }}
@@ -332,16 +336,19 @@
 
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Talla de camiseta
+              {{ $t("participant_form.shirt_size") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
-              {{ participant.shirt_size || "No especificado" }}
+              {{
+                participant.shirt_size ||
+                $t("participant_details.not_specified")
+              }}
             </div>
           </div>
 
           <div>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Habitación
+              {{ $t("participant_form.room") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.room || "No asignada" }}
@@ -350,7 +357,7 @@
 
           <div class="sm:col-span-2">
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Tratamiento médico
+              {{ $t("participant_form.medical_treatment") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
               {{ participant.medical_treatment || "Ninguno" }}
@@ -359,10 +366,12 @@
 
           <div class="sm:col-span-2">
             <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Alergias
+              {{ $t("participant_form.allergies") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
-              {{ participant.allergies || "Ninguna" }}
+              {{
+                participant.allergies || $t("participant_details.no_allergies")
+              }}
             </div>
           </div>
         </div>
@@ -374,7 +383,7 @@
       class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 text-center"
     >
       <p class="text-gray-600 dark:text-gray-400">
-        No se encontró información del participante.
+        {{ $t("participant_details.not_found") }}
       </p>
     </div>
     <!-- Modal de confirmación para eliminar -->
@@ -403,13 +412,15 @@
             </svg>
 
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-4">
-              Confirmar eliminación
+              {{ $t("participant_details.delete_modal.title") }}
             </h3>
 
             <p class="text-gray-600 dark:text-gray-400 mt-2">
-              ¿Estás seguro de que deseas eliminar a
-              <span class="font-semibold">{{ participant?.full_name }}</span
-              >? Esta acción no se puede deshacer.
+              {{
+                $t("participant_details.delete_modal.message", {
+                  name: participant?.full_name,
+                })
+              }}
             </p>
           </div>
 
@@ -418,7 +429,7 @@
               @click="cancelDelete"
               class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              Cancelar
+              {{ $t("participant_details.delete_modal.cancel") }}
             </button>
 
             <button
@@ -426,7 +437,11 @@
               :disabled="deleting"
               class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-70"
             >
-              {{ deleting ? "Eliminando..." : "Sí, eliminar" }}
+              {{
+                deleting
+                  ? $t("participant_details.delete_modal.deleting")
+                  : $t("participant_details.delete_modal.confirm")
+              }}
             </button>
           </div>
         </div>
@@ -441,7 +456,6 @@ import { useRoute, useRouter } from "vue-router";
 import { useParticipantsStore } from "@/stores/participants";
 import { useAuthStore } from "@/stores/auth";
 import type { Participant } from "@/lib/supabase";
-import { User } from "@supabase/supabase-js";
 
 const route = useRoute();
 const router = useRouter();

@@ -3,10 +3,10 @@
     <div class="mb-8 flex justify-between items-center">
       <div>
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
-          Gestión de Participantes
+          {{ $t("home.title") }}
         </h1>
         <p class="mt-2 text-gray-600 dark:text-gray-400">
-          Busca y gestiona la información de los participantes registrados.
+          {{ $t("home.subtitle") }}
         </p>
       </div>
 
@@ -29,7 +29,7 @@
             clip-rule="evenodd"
           />
         </svg>
-        Crear Participante
+        {{ $t("home.create_button") }}
       </button>
     </div>
 
@@ -107,8 +107,8 @@
         <p class="text-gray-600 dark:text-gray-400">
           {{
             searchQuery && searchHasStarted
-              ? "No se encontraron participantes con ese nombre."
-              : "Ingresa un nombre para buscar participantes."
+              ? $t("home.no_results")
+              : $t("home.search_prompt")
           }}
         </p>
       </div>
@@ -121,31 +121,31 @@
                 scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
               >
-                Nombre
+                {{ $t("home.table.name") }}
               </th>
               <th
                 scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
               >
-                Edad
+                {{ $t("home.table.age") }}
               </th>
               <th
                 scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
               >
-                Estaca/Distrito
+                {{ $t("home.table.stake") }}
               </th>
               <th
                 scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
               >
-                Barrio/Rama
+                {{ $t("home.table.ward") }}
               </th>
               <th
                 scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
               >
-                Grupo/Compañía
+                {{ $t("home.table.group_company") }}
               </th>
               <th scope="col" class="relative px-6 py-3">
                 <span class="sr-only">Acciones</span>
@@ -193,7 +193,7 @@
                   @click.stop="viewParticipant(participant.id)"
                   class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300"
                 >
-                  Ver
+                  {{ $t("home.table.view") }}
                 </button>
               </td>
             </tr>
@@ -213,7 +213,7 @@
         <div class="p-6">
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-              Crear Nuevo Participante
+              {{ $t("home.create_modal.title") }}
             </h2>
             <button
               @click="closeCreateModal"
