@@ -17,23 +17,30 @@ export const useParticipantsStore = defineStore("participants", () => {
   const fetchParticipants = async (query: string = "") => {
     if (!authStore.isAuthenticated()) return;
 
-    // Solo activar loading si hay una búsqueda activa o si explícitamente
-    // se pasa un parámetro para indicar carga inicial
-    const isInitialLoad = query === "" && participants.value.length === 0;
-    loading.value = isInitialLoad ? true : !!query;
+    // Si la consulta está vacía, establecer la lista de participantes como vacía
+    if (!query || query.trim() === "") {
+      participants.value = [];
+      lastSearchQuery.value = "";
+      loading.value = false;
+      return;
+    }
+
+    // Activar loading cuando hay una búsqueda activa
+    loading.value = true;
 
     console.log("Fetching participants with query:", query);
     lastSearchQuery.value = query;
+
     try {
-      const { data, error } = await supabase
+      // Realizar búsqueda de texto
+      const { data, error: queryError } = await supabase
         .from("participants")
-        .select()
-        .textSearch("full_name", `'${query}'`);
+        .select("*")
+        .textSearch("full_name", query);
 
-      // if (queryError) throw queryError;
+      if (queryError) throw queryError;
+
       console.log("Data:", data);
-      console.log("Error:", error);
-
       participants.value = data as Participant[];
       console.log("Participants.value data saved:", participants.value);
     } catch (err: any) {

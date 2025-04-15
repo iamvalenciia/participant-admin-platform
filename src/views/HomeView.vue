@@ -63,9 +63,6 @@
         <div
           class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 dark:border-indigo-400"
         ></div>
-        <p class="mt-2 text-gray-600 dark:text-gray-400">
-          Cargando participantes...
-        </p>
       </div>
 
       <!-- Si está cargando pero es la carga inicial, muestra algo diferente o nada -->
@@ -85,9 +82,9 @@
       <div v-else-if="participants.length === 0" class="p-6 text-center">
         <p class="text-gray-600 dark:text-gray-400">
           {{
-            searchQuery
+            searchQuery && searchHasStarted
               ? "No se encontraron participantes con ese nombre."
-              : "No hay participantes registrados."
+              : "Esperando búsqueda..."
           }}
         </p>
       </div>
@@ -215,8 +212,8 @@ const handleSearch = () => {
     clearTimeout(searchTimeout.value);
   }
 
-  // Indicar que la búsqueda ha comenzado
-  searchHasStarted.value = true;
+  // Indicar que la búsqueda ha comenzado solo si hay texto
+  searchHasStarted.value = !!searchQuery.value.trim();
 
   searchTimeout.value = setTimeout(() => {
     fetchParticipants();
@@ -227,15 +224,12 @@ const handleSearch = () => {
 const clearSearch = () => {
   searchQuery.value = "";
   searchHasStarted.value = false;
-  fetchParticipants();
+  fetchParticipants(); // Esto ahora establecerá participants como un array vacío
 };
 
 // Función para obtener los participantes
 const fetchParticipants = () => {
-  // Solo establecer searchHasStarted a true cuando es una búsqueda explícita
-  if (searchQuery.value) {
-    searchHasStarted.value = true;
-  }
+  // Solo se mostrarán resultados si hay un texto de búsqueda
   participantsStore.fetchParticipants(searchQuery.value);
 };
 
@@ -244,7 +238,7 @@ const viewParticipant = (id: number) => {
   router.push(`/participant/${id}`);
 };
 
-// Acciones al montar el componente
+// Modificar la sección onMounted
 onMounted(async () => {
   // Verificar autenticación
   if (!authStore.isAuthenticated()) {
@@ -252,13 +246,15 @@ onMounted(async () => {
     return;
   }
 
-  // Si tenemos una búsqueda guardada, indicar que ya ha comenzado la búsqueda
-  if (searchQuery.value) {
+  // Si tenemos una búsqueda guardada, indicar que ya ha comenzado la búsqueda y ejecutarla
+  if (searchQuery.value && searchQuery.value.trim() !== "") {
     searchHasStarted.value = true;
+    await fetchParticipants();
+  } else {
+    // Inicializar con lista vacía
+    searchHasStarted.value = false;
+    participantsStore.participants = [];
   }
-
-  // Obtener participantes - esto usará la consulta guardada
-  await fetchParticipants();
 
   // Configurar suscripción en tiempo real
   participantsStore.setupRealtimeSubscription();

@@ -10,7 +10,7 @@
           Iniciar sesión
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Sistema de Gestión de Participantes
+          Sistema de Gestión de Participantes del PFJ 2025
         </p>
       </div>
 

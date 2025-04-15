@@ -17,6 +17,7 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: LoginView,
+      meta: { redirectIfAuth: true },
     },
     {
       path: "/participant/:id",
@@ -34,6 +35,12 @@ const router = createRouter({
 // Navegación global
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
+
+  // Redirigir al home si el usuario está autenticado e intenta acceder al login
+  if (to.meta.redirectIfAuth && authStore.isAuthenticated()) {
+    next({ name: "home" });
+    return;
+  }
 
   // Verificar rutas protegidas
   if (to.meta.requiresAuth && !authStore.isAuthenticated()) {
