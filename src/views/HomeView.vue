@@ -259,12 +259,12 @@ const router = useRouter();
 const participantsStore = useParticipantsStore();
 const authStore = useAuthStore();
 
-const userId = computed(() => authStore.user.id);
+const userId = computed(() => authStore.user?.id);
 
 const searchQuery = ref(participantsStore.lastSearchQuery || "");
 const searchTimeout = ref<number | null>(null);
 
-const participants = computed(() => participantsStore.participants);
+const participants: any = computed(() => participantsStore.participants);
 const loading = computed(() => participantsStore.loading);
 const error = computed(() => participantsStore.error);
 
@@ -330,7 +330,7 @@ const closeCreateModal = () => {
 const handleCreateSubmit = async (data: Partial<Participant>) => {
   saving.value = true;
   try {
-    const result = await participantsStore.createParticipant(data);
+    const result = await participantsStore.createParticipant(data as any);
     if (result.success) {
       closeCreateModal();
       // Si hay un ID, redirigir a la página de detalles

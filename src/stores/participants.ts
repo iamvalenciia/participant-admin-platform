@@ -3,10 +3,11 @@ import { ref, computed } from "vue";
 import { supabase } from "../supabase";
 import Participant from "../types/supabase";
 import { useAuthStore } from "./auth";
+import { ParticipantType } from "../types/utlity";
 
 export const useParticipantsStore = defineStore("participants", () => {
-  const participants = ref<Participant[]>([]);
-  const currentParticipant = ref<Participant | null>(null);
+  const participants = ref<ParticipantType[]>([]);
+  const currentParticipant = ref<ParticipantType | null>(null);
   const loading = ref(false);
   const error = ref<string | null>(null);
   const searchQuery = ref("");
@@ -56,7 +57,7 @@ export const useParticipantsStore = defineStore("participants", () => {
       if (queryError) throw queryError;
 
       console.log("Data:", data);
-      participants.value = data as Participant[];
+      participants.value = data;
       console.log("Participants.value data saved:", participants.value);
     } catch (err: any) {
       console.error("Error al obtener participantes:", err);
@@ -108,7 +109,7 @@ export const useParticipantsStore = defineStore("participants", () => {
 
       if (queryError) throw queryError;
 
-      currentParticipant.value = data as Participant;
+      currentParticipant.value = data;
     } catch (err: any) {
       console.error(`Error al obtener participante id=${id}:`, err);
       error.value = err.message || "Error al obtener el participante";
@@ -133,7 +134,7 @@ export const useParticipantsStore = defineStore("participants", () => {
 
       if (createError) throw createError;
 
-      currentParticipant.value = createdData as Participant;
+      currentParticipant.value = createdData;
 
       // Si hay una búsqueda activa, actualizar la lista
       if (searchQuery.value) {
@@ -167,12 +168,12 @@ export const useParticipantsStore = defineStore("participants", () => {
 
       if (updateError) throw updateError;
 
-      currentParticipant.value = updatedData as Participant;
+      currentParticipant.value = updatedData;
 
       // Actualizar el participante en la lista si existe
       const index = participants.value.findIndex((p) => p.id === id);
       if (index !== -1) {
-        participants.value[index] = updatedData as Participant;
+        participants.value[index] = updatedData;
       }
 
       return { success: true, data: updatedData };
