@@ -1,4 +1,10 @@
 {
+  "navbar": {
+    "home": "Home",
+    "report": "Report",
+    "advancedSearch": "Advanced Search",
+    "logout": "Logout"
+  },
   "home": {
     "title": "Participant Management",
     "subtitle": "Search and manage registered participants' information.",

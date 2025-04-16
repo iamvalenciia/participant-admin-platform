@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
+import AdvancedSearchView from "@/views/AdvancedSearchView.vue";
+import ReportView from "@/views/ReportView.vue";
 import ParticipantDetailView from "../views/ParticipantDetailView.vue";
 import { useAuthStore } from "../stores/auth";
 
@@ -11,6 +13,18 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/advanced-search",
+      name: "advanced-search",
+      component: AdvancedSearchView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/report",
+      name: "report",
+      component: ReportView,
       meta: { requiresAuth: true },
     },
     {

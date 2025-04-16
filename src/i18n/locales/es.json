@@ -1,4 +1,10 @@
 {
+  "navbar": {
+    "home": "Inicio",
+    "report": "Reporte",
+    "advancedSearch": "Búsqueda Avanzada",
+    "logout": "Cerrar sesión"
+  },
   "home": {
     "title": "Gestión de Participantes",
     "subtitle": "Busca y gestiona la información de los participantes registrados.",

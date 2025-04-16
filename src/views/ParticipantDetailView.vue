@@ -462,7 +462,7 @@ const router = useRouter();
 const participantsStore = useParticipantsStore();
 const authStore = useAuthStore();
 
-const userId = authStore.user.id;
+const userId = authStore.user?.id;
 
 const participant = computed(() => participantsStore.currentParticipant);
 const loading = computed(() => participantsStore.loading);
