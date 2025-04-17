@@ -12,7 +12,6 @@ export default interface Database {
           company: number;
           medical_treatment: string;
           allergies: string;
-          room: string;
           created_at?: string;
           updated_at?: string;
         };
@@ -26,7 +25,6 @@ export default interface Database {
           company: number;
           medical_treatment?: string;
           allergies?: string;
-          room?: string;
           created_at?: string;
           updated_at?: string;
         };
@@ -40,7 +38,6 @@ export default interface Database {
           company?: number;
           medical_treatment?: string;
           allergies?: string;
-          room?: string;
           created_at?: string;
           updated_at?: string;
         };

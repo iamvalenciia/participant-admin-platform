@@ -1,31 +1,31 @@
 <template>
   <div>
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+      <h1 class="text-3xl font-bold text-teal-900 dark:text-amber-100">
         {{ $t("advancedSearch.title") }}
       </h1>
-      <p class="mt-2 text-gray-600 dark:text-gray-400">
+      <p class="mt-2 text-teal-700 dark:text-amber-200">
         {{ $t("advancedSearch.subtitle") }}
       </p>
     </div>
 
     <!-- Filtros de búsqueda -->
     <div
-      class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden mb-6 p-6"
+      class="bg-amber-50 dark:bg-teal-950 shadow-md rounded-lg overflow-hidden mb-6 p-6 border border-amber-200 dark:border-teal-800"
     >
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Filtro de Compañía -->
         <div>
           <label
             for="company"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            class="block text-sm font-medium text-teal-800 dark:text-amber-100 mb-1"
           >
             {{ $t("advancedSearch.filters.company") }}
           </label>
           <select
             id="company"
             v-model="filters.company"
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            class="w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
           >
             <option value="">
               {{ $t("advancedSearch.filters.all_companies") }}
@@ -46,7 +46,7 @@
         <div>
           <label
             for="stake"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            class="block text-sm font-medium text-teal-800 dark:text-amber-100 mb-1"
           >
             {{ $t("advancedSearch.filters.stake") }}
           </label>
@@ -54,7 +54,7 @@
             id="stake"
             v-model="filters.stake"
             @change="onStakeChange"
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            class="w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
           >
             <option value="">
               {{ $t("advancedSearch.filters.all_stakes") }}
@@ -69,7 +69,7 @@
         <div>
           <label
             for="ward"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            class="block text-sm font-medium text-teal-800 dark:text-amber-100 mb-1"
           >
             {{ $t("advancedSearch.filters.ward") }}
           </label>
@@ -77,7 +77,7 @@
             id="ward"
             v-model="filters.ward"
             :disabled="!filters.stake"
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            class="w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <option value="">
               {{ $t("advancedSearch.filters.all_wards") }}
@@ -90,16 +90,16 @@
       </div>
 
       <!-- Botones de acción -->
-      <div class="mt-6 flex justify-end space-x-3">
+      <div class="mt-6 flex flex-wrap justify-end gap-3">
         <button
           @click="clearFilters"
-          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="px-4 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm text-sm font-medium text-teal-800 dark:text-amber-100 bg-white dark:bg-teal-900 hover:bg-amber-100 dark:hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-colors"
         >
           {{ $t("advancedSearch.filters.clear") }}
         </button>
         <button
           @click="searchParticipants"
-          class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+          class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors"
         >
           {{ $t("advancedSearch.filters.search") }}
         </button>
@@ -107,11 +107,13 @@
     </div>
 
     <!-- Tabla de resultados -->
-    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
+    <div
+      class="bg-amber-50 dark:bg-teal-950 shadow-md rounded-lg overflow-hidden border border-amber-200 dark:border-teal-800"
+    >
       <!-- Loading indicator -->
       <div v-if="loading" class="p-6 text-center">
         <div
-          class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 dark:border-indigo-400"
+          class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-teal-600 dark:border-yellow-400"
         ></div>
       </div>
 
@@ -126,7 +128,7 @@
 
       <!-- Empty state -->
       <div v-else-if="participants.length === 0" class="p-6 text-center">
-        <p class="text-gray-600 dark:text-gray-400">
+        <p class="text-teal-700 dark:text-amber-200">
           {{
             searchPerformed
               ? $t("advancedSearch.no_results")
@@ -137,36 +139,38 @@
 
       <!-- Results table -->
       <div v-else class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead class="bg-gray-50 dark:bg-gray-900">
+        <table
+          class="min-w-full divide-y divide-amber-200 dark:divide-teal-800"
+        >
+          <thead class="bg-amber-100 dark:bg-teal-900">
             <tr>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider"
               >
                 {{ $t("advancedSearch.table.name") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider"
               >
                 {{ $t("advancedSearch.table.age") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider hidden md:table-cell"
               >
                 {{ $t("advancedSearch.table.stake") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider hidden lg:table-cell"
               >
                 {{ $t("advancedSearch.table.ward") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider"
               >
                 {{ $t("advancedSearch.table.group_company") }}
               </th>
@@ -178,36 +182,36 @@
             </tr>
           </thead>
           <tbody
-            class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
+            class="bg-white dark:bg-teal-950 divide-y divide-amber-200 dark:divide-teal-800"
           >
             <tr
               v-for="participant in participants"
               :key="participant.id"
-              class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+              class="hover:bg-amber-100 dark:hover:bg-teal-900 transition-colors cursor-pointer"
               @click="viewParticipant(participant.id)"
             >
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="font-medium text-gray-900 dark:text-white">
+                <div class="font-medium text-teal-900 dark:text-amber-100">
                   {{ participant.full_name }}
                 </div>
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200"
               >
                 {{ participant.age }}
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200 hidden md:table-cell"
               >
                 {{ participant.stake_or_district }}
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200 hidden lg:table-cell"
               >
                 {{ participant.ward_or_branch }}
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200"
               >
                 G: {{ participant.group }} / C: {{ participant.company }}
               </td>
@@ -216,7 +220,7 @@
               >
                 <button
                   @click.stop="viewParticipant(participant.id)"
-                  class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300"
+                  class="text-teal-700 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300 transition-colors"
                 >
                   {{ $t("advancedSearch.table.view") }}
                 </button>
@@ -269,7 +273,7 @@ const stakeWardMap = {
     "Nicolas Infante Ward",
     "Republica Ward",
     "Valencia Ward",
-    "Venus del RÃ­o Ward",
+    "Venus del Río Ward",
   ],
   "Santo Domingo Ecuador Stake": [
     "Bomboli Ward",

@@ -1,21 +1,19 @@
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-8"
-  >
-    <div class="max-w-md w-full space-y-8">
-      <div>
+  <div class="flex items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full">
+      <div class="mb-4">
         <h2
-          class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white"
+          class="text-center text-2xl font-bold text-teal-900 dark:text-amber-100"
         >
           {{ $t("login.title") }}
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-center text-sm text-teal-700 dark:text-amber-200">
           {{ $t("login.subtitle") }}
         </p>
       </div>
 
-      <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
-        <div class="rounded-md shadow-sm space-y-4">
+      <form class="space-y-4" @submit.prevent="handleLogin">
+        <div class="rounded-md shadow-sm space-y-3">
           <div>
             <label for="email" class="sr-only">{{ $t("login.email") }}</label>
             <input
@@ -25,7 +23,7 @@
               type="email"
               autocomplete="email"
               required
-              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 placeholder-teal-500 dark:placeholder-amber-300 text-teal-900 dark:text-amber-100 dark:bg-teal-900 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm transition-colors"
               :placeholder="$t('login.email')"
             />
           </div>
@@ -40,7 +38,7 @@
               type="password"
               autocomplete="current-password"
               required
-              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 placeholder-teal-500 dark:placeholder-amber-300 text-teal-900 dark:text-amber-100 dark:bg-teal-900 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm transition-colors"
               :placeholder="$t('login.password')"
             />
           </div>
@@ -50,14 +48,14 @@
           <button
             type="submit"
             :disabled="loading"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-70"
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-70 transition-colors"
           >
             <span
               v-if="loading"
               class="absolute left-0 inset-y-0 flex items-center pl-3"
             >
               <svg
-                class="animate-spin h-5 w-5 text-indigo-300"
+                class="animate-spin h-5 w-5 text-teal-300"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -89,23 +87,15 @@
         </div>
       </form>
 
-      <div class="mt-4 text-center space-y-2">
+      <div class="mt-3 text-center">
         <!-- Botón para cambiar el tema -->
         <button
           @click="toggleTheme"
-          class="inline-block text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 mx-2"
+          class="inline-block text-xs text-teal-700 dark:text-amber-200 hover:text-yellow-600 dark:hover:text-yellow-400 mx-2 transition-colors"
         >
           <span v-if="isDark">{{ $t("login.theme_light") }}</span>
           <span v-else>{{ $t("login.theme_dark") }}</span>
         </button>
-
-        <!-- Botón para cambiar el idioma -->
-        <!-- <button
-          @click="toggleLanguage"
-          class="inline-block text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 mx-2"
-        >
-          {{ $t("common.language") }}
-        </button> -->
       </div>
     </div>
   </div>

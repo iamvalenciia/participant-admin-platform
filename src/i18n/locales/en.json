@@ -3,7 +3,8 @@
     "home": "Home",
     "report": "Report",
     "advancedSearch": "Advanced Search",
-    "logout": "Logout"
+    "logout": "Logout",
+    "language": "Select language"
   },
   "home": {
     "title": "Participant Management",
@@ -42,10 +43,13 @@
     "full_name": "Full name",
     "age": "Age",
     "stake_or_district": "Stake/District",
+    "select_stake": "Select stake",
+    "select_ward": "Select ward",
     "ward_or_branch": "Ward/Branch",
     "group": "Group",
     "company": "Company",
     "bed": "Bed",
+    "bed_assignment": "Bed assignment",
     "medical_treatment": "Medical treatment",
     "allergies": "Allergies",
     "no_size": "Not specified",

@@ -3,7 +3,8 @@
     "home": "Inicio",
     "report": "Reporte",
     "advancedSearch": "Búsqueda Avanzada",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "language": "Seleccionar idioma"
   },
   "home": {
     "title": "Gestión de Participantes",
@@ -42,10 +43,13 @@
     "full_name": "Nombre completo",
     "age": "Edad",
     "stake_or_district": "Estaca/Distrito",
+    "select_stake": "Seleccionar estaca",
+    "select_ward": "Seleccionar barrio",
     "ward_or_branch": "Barrio/Rama",
     "group": "Grupo",
     "company": "Compañía",
     "bed": "Cama",
+    "bed_assignment": "Asignación de cama",
     "medical_treatment": "Tratamiento médico",
     "allergies": "Alergias",
     "no_size": "Sin especificar",
@@ -115,7 +119,7 @@
     "bed_selector": {
       "building": "Edificio",
       "floor": "Piso",
-      "bed_number": "Número de cama",
+      "bed_number": "Número",
       "actions": "Acciones",
       "all_buildings": "Todos los edificios",
       "all_floors": "Todos los pisos",

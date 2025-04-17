@@ -1,20 +1,22 @@
 <template>
   <div>
-    <div class="mb-8 flex justify-between items-center">
+    <div
+      class="mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4"
+    >
       <div>
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 class="text-3xl font-bold text-teal-900 dark:text-amber-100">
           {{ $t("home.title") }}
         </h1>
-        <p class="mt-2 text-gray-600 dark:text-gray-400">
+        <p class="mt-2 text-teal-700 dark:text-amber-200">
           {{ $t("home.subtitle") }}
         </p>
       </div>
 
-      <!-- Nuevo botón para crear participante -->
+      <!-- Botón para crear participante -->
       <button
         v-if="isAuthenticated"
         @click="openCreateModal"
-        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 dark:bg-teal-600 dark:hover:bg-teal-700 transition-colors"
       >
         <svg
           class="-ml-1 mr-2 h-5 w-5"
@@ -39,14 +41,14 @@
           v-model="searchQuery"
           type="text"
           placeholder="Buscar participante por nombre..."
-          class="w-full px-4 py-3 pl-10 pr-10 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full px-4 py-3 pl-10 pr-10 border border-amber-300 dark:border-teal-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100"
           @input="handleSearch"
         />
         <div
           class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
         >
           <svg
-            class="h-5 w-5 text-gray-400"
+            class="h-5 w-5 text-teal-500 dark:text-amber-300"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -65,7 +67,7 @@
           class="absolute inset-y-0 right-0 pr-3 flex items-center"
         >
           <svg
-            class="h-5 w-5 text-gray-400 hover:text-gray-500"
+            class="h-5 w-5 text-teal-500 dark:text-amber-300 hover:text-teal-700 dark:hover:text-amber-200 transition-colors"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -81,20 +83,22 @@
       </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-      <!-- Modifica la parte del spinner -->
+    <div
+      class="bg-amber-50 dark:bg-teal-950 shadow-md rounded-lg overflow-hidden"
+    >
+      <!-- Spinner de carga -->
       <div v-if="loading && searchHasStarted" class="p-6 text-center">
         <div
-          class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 dark:border-indigo-400"
+          class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-teal-600 dark:border-yellow-400"
         ></div>
       </div>
 
-      <!-- Si está cargando pero es la carga inicial, muestra algo diferente o nada -->
+      <!-- Carga inicial -->
       <div v-else-if="loading && !searchHasStarted" class="p-6 text-center">
-        <!-- Puedes mostrar otro mensaje o quitar esto para no mostrar nada -->
-        <p class="text-gray-600 dark:text-gray-400">Inicializando...</p>
+        <p class="text-teal-700 dark:text-amber-200">Inicializando...</p>
       </div>
 
+      <!-- Mensaje de error -->
       <div v-else-if="error" class="p-6 text-center">
         <div
           class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 p-4 rounded-md"
@@ -103,8 +107,9 @@
         </div>
       </div>
 
+      <!-- Sin resultados -->
       <div v-else-if="participants.length === 0" class="p-6 text-center">
-        <p class="text-gray-600 dark:text-gray-400">
+        <p class="text-teal-700 dark:text-amber-200">
           {{
             searchQuery && searchHasStarted
               ? $t("home.no_results")
@@ -113,37 +118,40 @@
         </p>
       </div>
 
+      <!-- Tabla de resultados -->
       <div v-else class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead class="bg-gray-50 dark:bg-gray-900">
+        <table
+          class="min-w-full divide-y divide-amber-200 dark:divide-teal-800"
+        >
+          <thead class="bg-amber-100 dark:bg-teal-900">
             <tr>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider"
               >
                 {{ $t("home.table.name") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider"
               >
                 {{ $t("home.table.age") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider hidden md:table-cell"
               >
                 {{ $t("home.table.stake") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider hidden lg:table-cell"
               >
                 {{ $t("home.table.ward") }}
               </th>
               <th
                 scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                class="px-6 py-3 text-left text-xs font-medium text-teal-700 dark:text-amber-200 uppercase tracking-wider"
               >
                 {{ $t("home.table.group_company") }}
               </th>
@@ -153,36 +161,36 @@
             </tr>
           </thead>
           <tbody
-            class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
+            class="bg-amber-50 dark:bg-teal-950 divide-y divide-amber-200 dark:divide-teal-800"
           >
             <tr
               v-for="participant in participants"
               :key="participant.id"
-              class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+              class="hover:bg-amber-100 dark:hover:bg-teal-900 transition-colors cursor-pointer"
               @click="viewParticipant(participant.id)"
             >
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="font-medium text-gray-900 dark:text-white">
+                <div class="font-medium text-teal-900 dark:text-amber-100">
                   {{ participant.full_name }}
                 </div>
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200"
               >
                 {{ participant.age }}
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200 hidden md:table-cell"
               >
                 {{ participant.stake_or_district }}
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200 hidden lg:table-cell"
               >
                 {{ participant.ward_or_branch }}
               </td>
               <td
-                class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300"
+                class="px-6 py-4 whitespace-nowrap text-teal-800 dark:text-amber-200"
               >
                 G: {{ participant.group }} / C: {{ participant.company }}
               </td>
@@ -191,7 +199,7 @@
               >
                 <button
                   @click.stop="viewParticipant(participant.id)"
-                  class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300"
+                  class="text-teal-700 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300 transition-colors"
                 >
                   {{ $t("home.table.view") }}
                 </button>
@@ -208,16 +216,16 @@
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
     >
       <div
-        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto"
+        class="bg-amber-50 dark:bg-teal-950 rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto"
       >
         <div class="p-6">
           <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 class="text-2xl font-bold text-teal-900 dark:text-amber-100">
               {{ $t("home.create_modal.title") }}
             </h2>
             <button
               @click="closeCreateModal"
-              class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              class="text-teal-700 hover:text-teal-900 dark:text-amber-200 dark:hover:text-amber-100 transition-colors"
             >
               <svg
                 class="h-6 w-6"
