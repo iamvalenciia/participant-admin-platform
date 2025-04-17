@@ -11,25 +11,28 @@
           >
             {{ $t("navbar.home") }}
           </RouterLink>
-          <RouterLink
-            to="/report"
-            class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-            active-class="text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400"
-          >
-            {{ $t("navbar.report") }}
-          </RouterLink>
-          <RouterLink
-            to="/advanced-search"
-            class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-            active-class="text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400"
-          >
-            {{ $t("navbar.advancedSearch") }}
-          </RouterLink>
+
+          <template v-if="isAuthenticated">
+            <RouterLink
+              to="/report"
+              class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              active-class="text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400"
+            >
+              {{ $t("navbar.report") }}
+            </RouterLink>
+            <RouterLink
+              to="/advanced-search"
+              class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              active-class="text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400"
+            >
+              {{ $t("navbar.advancedSearch") }}
+            </RouterLink>
+          </template>
         </div>
       </div>
 
       <div class="flex items-center space-x-4">
-        <!-- Selector de idioma simplificado para evitar problemas DOM -->
+        <!-- Selector de idioma -->
         <div class="relative">
           <button
             @click="toggleLanguageMenu"
@@ -79,6 +82,7 @@
           </Teleport>
         </div>
 
+        <!-- Botón de tema -->
         <button
           @click="toggleTheme"
           class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -116,12 +120,21 @@
           </svg>
         </button>
 
+        <!-- Botón Login / Logout -->
         <button
+          v-if="isAuthenticated"
           @click="logout"
           class="px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           {{ $t("navbar.logout") }}
         </button>
+        <RouterLink
+          v-else
+          to="/login"
+          class="px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          {{ $t("login.login_button") }}
+        </RouterLink>
       </div>
     </div>
   </nav>
@@ -145,6 +158,8 @@ const currentLocale = computed(() => locale.value);
 const showLanguageMenu = ref(false);
 const languageButtonRef = ref<HTMLElement | null>(null);
 const languageMenuPosition = ref({ top: "0px", left: "0px" });
+
+const isAuthenticated = computed(() => !!authStore.user);
 
 const toggleTheme = () => {
   themeStore.toggleTheme();

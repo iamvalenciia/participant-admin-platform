@@ -1,11 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { createClient, User } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  "https://rjapweysbkafjktrvvwi.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqYXB3ZXlzYmthZmprdHJ2dndpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ2MTU5NjAsImV4cCI6MjA2MDE5MTk2MH0.104F0N_h0y9J3_3FGvOkTADoxFedXSc57PbnNhYBfcY"
-);
+import { supabase } from "../supabase";
 
 export const useAuthStore = defineStore("auth", () => {
   const user = ref<User | null>(null);

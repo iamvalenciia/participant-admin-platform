@@ -100,12 +100,12 @@
         </button>
 
         <!-- Botón para cambiar el idioma -->
-        <button
+        <!-- <button
           @click="toggleLanguage"
           class="inline-block text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 mx-2"
         >
           {{ $t("common.language") }}
-        </button>
+        </button> -->
       </div>
     </div>
   </div>

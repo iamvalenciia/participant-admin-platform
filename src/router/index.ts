@@ -13,7 +13,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      meta: { requiresAuth: true },
     },
     {
       path: "/advanced-search",
@@ -31,13 +30,11 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: LoginView,
-      meta: { redirectIfAuth: true },
     },
     {
       path: "/participant/:id",
       name: "participant-detail",
       component: ParticipantDetailView,
-      meta: { requiresAuth: true },
     },
     {
       path: "/:pathMatch(.*)*",

@@ -83,23 +83,8 @@
       </div>
 
       <div>
-        <label for="shirt_size" class="form-label">
-          {{ $t("participant_form.shirt_size") }}
-        </label>
-        <select id="shirt_size" v-model="form.shirt_size" class="input">
-          <option value="">Sin especificar</option>
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
-        </select>
-      </div>
-
-      <div>
         <label for="room" class="form-label">
-          {{ $t("participant_form.room") }}
+          {{ $t("participant_form.bed") }}
         </label>
         <input id="room" v-model="form.room" type="text" class="input" />
       </div>
@@ -164,7 +149,6 @@ const form = reactive<Partial<Participant>>({
   ward_or_branch: "",
   group: 0,
   company: 0,
-  shirt_size: "",
   room: "",
   medical_treatment: "",
   allergies: "",

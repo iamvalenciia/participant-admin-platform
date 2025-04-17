@@ -45,8 +45,7 @@
     "ward_or_branch": "Ward/Branch",
     "group": "Group",
     "company": "Company",
-    "shirt_size": "Shirt size",
-    "room": "Room",
+    "bed": "Bed",
     "medical_treatment": "Medical treatment",
     "allergies": "Allergies",
     "no_size": "Not specified",
@@ -65,7 +64,7 @@
     "saving": "Saving...",
     "cancel": "Cancel",
     "not_specified": "Not specified",
-    "no_room": "Not assigned",
+    "no_bed": "Not assigned",
     "no_treatment": "None",
     "no_allergies": "None",
     "delete_modal": {
@@ -101,6 +100,35 @@
       "group_company": "Group/Company",
       "view": "View",
       "actions": "Actions"
+    }
+  },
+  "bed_update": {
+    "participant_form": {
+      "bed": "Bed",
+      "no_bed_assigned": "No bed assigned",
+      "show_beds": "Show available beds",
+      "hide_beds": "Hide available beds",
+      "unassign_bed": "Unassign bed"
+    },
+    "bed_selector": {
+      "building": "Building",
+      "floor": "Floor",
+      "bed_number": "Bed number",
+      "actions": "Actions",
+      "all_buildings": "All buildings",
+      "all_floors": "All floors",
+      "search": "Search",
+      "select": "Select",
+      "loading": "Loading beds...",
+      "no_results": "No available beds found"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "showing": "Showing",
+      "to": "to",
+      "of": "of",
+      "results": "results"
     }
   },
   "common": {

@@ -10,7 +10,6 @@ export default interface Database {
           ward_or_branch: string;
           group: number;
           company: number;
-          shirt_size: string;
           medical_treatment: string;
           allergies: string;
           room: string;
@@ -25,7 +24,6 @@ export default interface Database {
           ward_or_branch: string;
           group: number;
           company: number;
-          shirt_size?: string;
           medical_treatment?: string;
           allergies?: string;
           room?: string;
@@ -40,7 +38,6 @@ export default interface Database {
           ward_or_branch?: string;
           group?: number;
           company?: number;
-          shirt_size?: string;
           medical_treatment?: string;
           allergies?: string;
           room?: string;

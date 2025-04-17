@@ -44,7 +44,7 @@ export const useAdvancedSearchStore = defineStore("advancedSearch", () => {
       lastFilters.value = { ...filters };
 
       // Iniciar consulta base
-      let query = supabase.from("participants").select("*");
+      let query = supabase.from("participants2").select("*");
 
       // Aplicar filtros si existen
       if (filters.company) {
@@ -98,7 +98,7 @@ export const useAdvancedSearchStore = defineStore("advancedSearch", () => {
   const fetchUniqueValues = async (field: string): Promise<string[]> => {
     try {
       const { data, error: supabaseError } = await supabase
-        .from("participants")
+        .from("participants2")
         .select(field)
         .order(field);
 

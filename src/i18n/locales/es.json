@@ -45,8 +45,7 @@
     "ward_or_branch": "Barrio/Rama",
     "group": "Grupo",
     "company": "Compañía",
-    "shirt_size": "Talla de camiseta",
-    "room": "Habitación",
+    "bed": "Cama",
     "medical_treatment": "Tratamiento médico",
     "allergies": "Alergias",
     "no_size": "Sin especificar",
@@ -65,7 +64,7 @@
     "saving": "Guardando...",
     "cancel": "Cancelar",
     "not_specified": "No especificado",
-    "no_room": "No asignada",
+    "no_bed": "No asignada",
     "no_treatment": "Ninguno",
     "no_allergies": "Ninguna",
     "delete_modal": {
@@ -102,6 +101,35 @@
       "group_company": "Grupo/Compañía",
       "view": "Ver",
       "actions": "Acciones"
+    }
+  },
+  "bed_update": {
+    "participant_form": {
+      "bed": "Cama",
+      "no_bed_assigned": "Ninguna cama asignada",
+      "show_beds": "Mostrar camas disponibles",
+      "hide_beds": "Ocultar camas disponibles",
+      "unassign_bed": "Desocupar cama"
+    },
+    "bed_selector": {
+      "building": "Edificio",
+      "floor": "Piso",
+      "bed_number": "Número de cama",
+      "actions": "Acciones",
+      "all_buildings": "Todos los edificios",
+      "all_floors": "Todos los pisos",
+      "search": "Buscar",
+      "select": "Seleccionar",
+      "loading": "Cargando camas...",
+      "no_results": "No se encontraron camas disponibles"
+    },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "showing": "Mostrando",
+      "to": "a",
+      "of": "de",
+      "results": "resultados"
     }
   },
   "common": {

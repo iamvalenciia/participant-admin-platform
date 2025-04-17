@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import { supabase } from "../supabase";
 import Participant from "../types/supabase";
 import { useAuthStore } from "./auth";
-import { ParticipantType } from "../types/utlity";
+import { BedAssignmentInfo, ParticipantType } from "../types/utlity";
 
 export const useParticipantsStore = defineStore("participants", () => {
   const participants = ref<ParticipantType[]>([]);
@@ -18,7 +18,7 @@ export const useParticipantsStore = defineStore("participants", () => {
   // In your participants store, replace the fetchParticipants function with this:
 
   const fetchParticipants = async (query: string = "") => {
-    if (!authStore.isAuthenticated()) return;
+    // if (!authStore.isAuthenticated()) return;
 
     // Si la consulta está vacía, establecer la lista de participantes como vacía
     if (!query || query.trim() === "") {
@@ -37,7 +37,7 @@ export const useParticipantsStore = defineStore("participants", () => {
     try {
       // Formatea la consulta para búsqueda de texto adecuadamente
       // En lugar de usar textSearch directamente, hacemos un ilike para cada palabra
-      let supabaseQuery = supabase.from("participants").select("*");
+      let supabaseQuery = supabase.from("participants2").select("*");
 
       // Si hay múltiples palabras, aplicamos un filtro ilike para cada una
       const words = query.trim().split(/\s+/);
@@ -58,6 +58,7 @@ export const useParticipantsStore = defineStore("participants", () => {
 
       console.log("Data:", data);
       participants.value = data;
+
       console.log("Participants.value data saved:", participants.value);
     } catch (err: any) {
       console.error("Error al obtener participantes:", err);
@@ -96,13 +97,13 @@ export const useParticipantsStore = defineStore("participants", () => {
 
   // Obtener un participante por ID
   const fetchParticipantById = async (id: number) => {
-    if (!authStore.isAuthenticated()) return;
+    // if (!authStore.isAuthenticated()) return;
 
     loading.value = true;
 
     try {
       const { data, error: queryError } = await supabase
-        .from("participants")
+        .from("participants2")
         .select("*")
         .eq("id", id)
         .single();
@@ -127,7 +128,7 @@ export const useParticipantsStore = defineStore("participants", () => {
 
     try {
       const { data: createdData, error: createError } = await supabase
-        .from("participants")
+        .from("participants2")
         .insert(data)
         .select()
         .single();
@@ -160,7 +161,7 @@ export const useParticipantsStore = defineStore("participants", () => {
 
     try {
       const { data: updatedData, error: updateError } = await supabase
-        .from("participants")
+        .from("participants2")
         .update(data)
         .eq("id", id)
         .select()
@@ -195,7 +196,7 @@ export const useParticipantsStore = defineStore("participants", () => {
 
     try {
       const { error: deleteError } = await supabase
-        .from("participants")
+        .from("participants2")
         .delete()
         .eq("id", id);
 
@@ -219,6 +220,17 @@ export const useParticipantsStore = defineStore("participants", () => {
     }
   };
 
+  const updateCurrentParticipantBedInfo = (bedInfo: BedAssignmentInfo) => {
+    if (currentParticipant.value) {
+      currentParticipant.value = {
+        ...currentParticipant.value,
+        building: bedInfo.building_name,
+        floor: bedInfo.floor_code,
+        bed: bedInfo.bed_number,
+      };
+    }
+  };
+
   return {
     participants,
     currentParticipant,
@@ -228,6 +240,7 @@ export const useParticipantsStore = defineStore("participants", () => {
     lastSearchQuery,
     fetchParticipants,
     fetchParticipantById,
+    updateCurrentParticipantBedInfo,
     createParticipant,
     updateParticipant,
     deleteParticipant,

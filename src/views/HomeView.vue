@@ -12,7 +12,7 @@
 
       <!-- Nuevo botón para crear participante -->
       <button
-        v-if="userId === 'ca544172-2460-4959-9c59-7d7e1ad57568'"
+        v-if="isAuthenticated"
         @click="openCreateModal"
         class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
       >
@@ -253,13 +253,13 @@ import { useRouter } from "vue-router";
 import { useParticipantsStore } from "@/stores/participants";
 import { useAuthStore } from "@/stores/auth";
 import ParticipantForm from "@/components/ParticipantForm.vue";
-import { Participant } from "@/supabase";
+import { ParticipantType } from "@/types/utlity";
 
 const router = useRouter();
 const participantsStore = useParticipantsStore();
 const authStore = useAuthStore();
 
-const userId = computed(() => authStore.user?.id);
+const isAuthenticated = computed(() => !!authStore.user);
 
 const searchQuery = ref(participantsStore.lastSearchQuery || "");
 const searchTimeout = ref<number | null>(null);
@@ -327,7 +327,7 @@ const closeCreateModal = () => {
 };
 
 // Función para manejar el envío del formulario de creación
-const handleCreateSubmit = async (data: Partial<Participant>) => {
+const handleCreateSubmit = async (data: Partial<ParticipantType>) => {
   saving.value = true;
   try {
     const result = await participantsStore.createParticipant(data as any);
@@ -350,12 +350,6 @@ const handleCreateSubmit = async (data: Partial<Participant>) => {
 
 // Modificar la sección onMounted
 onMounted(async () => {
-  // Verificar autenticación
-  if (!authStore.isAuthenticated()) {
-    router.push("/login");
-    return;
-  }
-
   // Si tenemos una búsqueda guardada, indicar que ya ha comenzado la búsqueda y ejecutarla
   if (searchQuery.value && searchQuery.value.trim() !== "") {
     searchHasStarted.value = true;

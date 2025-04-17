@@ -3,7 +3,7 @@
     <div
       class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300"
     >
-      <Navbar v-if="isAuthenticated" />
+      <Navbar />
       <main class="container mx-auto px-4 py-8 max-w-7xl">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
@@ -13,7 +13,7 @@
       </main>
       <footer class="py-4 text-center text-sm text-gray-500 dark:text-gray-400">
         &copy; {{ new Date().getFullYear() }} - Sistema de Gestión de
-        Participantes
+        Participantes del PFJ
       </footer>
     </div>
   </div>
