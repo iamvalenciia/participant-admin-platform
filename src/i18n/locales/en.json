@@ -76,6 +76,33 @@
       "deleting": "Deleting..."
     }
   },
+  "advancedSearch": {
+    "title": "Advanced Search",
+    "subtitle": "Filter participants by company, stake and ward",
+    "error_message": "Error searching for participants. Please try again.",
+    "no_results": "No results found with the selected filters.",
+    "search_prompt": "Use the filters above to search for participants.",
+    "filters": {
+      "company": "Company",
+      "all_companies": "All companies",
+      "company_number": "Company {number}",
+      "stake": "Stake",
+      "all_stakes": "All stakes",
+      "ward": "Ward",
+      "all_wards": "All wards",
+      "clear": "Clear filters",
+      "search": "Search"
+    },
+    "table": {
+      "name": "Name",
+      "age": "Age",
+      "stake": "Stake",
+      "ward": "Ward",
+      "group_company": "Group/Company",
+      "view": "View",
+      "actions": "Actions"
+    }
+  },
   "common": {
     "logout": "Logout",
     "language": "🌎 Switch to Spanish"

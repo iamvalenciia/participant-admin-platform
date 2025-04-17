@@ -76,6 +76,34 @@
       "deleting": "Eliminando..."
     }
   },
+
+  "advancedSearch": {
+    "title": "Búsqueda Avanzada",
+    "subtitle": "Filtra participantes por compañía, estaca y barrio",
+    "error_message": "Error al buscar participantes. Por favor intenta nuevamente.",
+    "no_results": "No se encontraron resultados con los filtros seleccionados.",
+    "search_prompt": "Utiliza los filtros arriba para buscar participantes.",
+    "filters": {
+      "company": "Compañía",
+      "all_companies": "Todas las compañías",
+      "company_number": "Compañía {number}",
+      "stake": "Estaca",
+      "all_stakes": "Todas las estacas",
+      "ward": "Barrio",
+      "all_wards": "Todos los barrios",
+      "clear": "Limpiar filtros",
+      "search": "Buscar"
+    },
+    "table": {
+      "name": "Nombre",
+      "age": "Edad",
+      "stake": "Estaca",
+      "ward": "Barrio",
+      "group_company": "Grupo/Compañía",
+      "view": "Ver",
+      "actions": "Acciones"
+    }
+  },
   "common": {
     "logout": "Cerrar Sesión",
     "language": "🌎 Cambiar a inglés"
