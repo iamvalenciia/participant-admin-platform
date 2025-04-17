@@ -7,7 +7,7 @@
   },
   "home": {
     "title": "Gestión de Participantes",
-    "subtitle": "Busca y gestiona la información de los participantes registrados.",
+    "subtitle": "Consulta la información de los participantes registrados en el programa PFJ.",
     "create_button": "Crear Participante",
     "search_placeholder": "Buscar participante por nombre...",
     "loading": "Inicializando...",
@@ -51,7 +51,8 @@
     "no_size": "Sin especificar",
     "cancel": "Cancelar",
     "save": "Guardar",
-    "saving": "Guardando..."
+    "saving": "Guardando...",
+    "unassigned": "No asignada"
   },
   "participant_details": {
     "back_to_list": "Volver a la lista",

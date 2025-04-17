@@ -617,7 +617,9 @@
               {{ $t("participant_form.bed") }}
             </div>
             <div class="mt-1 text-gray-900 dark:text-white">
-              {{ participant.unique_bed_key || "No asignada" }}
+              {{
+                participant.unique_bed_key || t("participant_form.unassigned")
+              }}
             </div>
           </div>
 

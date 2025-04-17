@@ -7,7 +7,7 @@
   },
   "home": {
     "title": "Participant Management",
-    "subtitle": "Search and manage registered participants' information.",
+    "subtitle": "Check the information of participants registered in the FSY program.",
     "create_button": "Create Participant",
     "search_placeholder": "Search participant by name...",
     "loading": "Initializing...",
@@ -51,7 +51,8 @@
     "no_size": "Not specified",
     "cancel": "Cancel",
     "save": "Save",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "unassigned": "Unassigned"
   },
   "participant_details": {
     "back_to_list": "Back to list",
