@@ -11,8 +11,13 @@
         <input
           id="full_name"
           v-model="form.full_name"
+          required
+          :disabled="readOnlyFields.full_name"
           type="text"
           class="mt-1 block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 sm:text-sm transition-colors"
+          :class="{
+            'opacity-75 cursor-not-allowed': readOnlyFields.stake_or_district,
+          }"
         />
       </div>
 
@@ -28,9 +33,13 @@
           v-model.number="form.age"
           type="number"
           required
+          :disabled="readOnlyFields.age"
           min="1"
           max="120"
           class="mt-1 block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 sm:text-sm transition-colors"
+          :class="{
+            'opacity-75 cursor-not-allowed': readOnlyFields.stake_or_district,
+          }"
         />
       </div>
 
@@ -46,7 +55,11 @@
           v-model="form.stake_or_district"
           required
           @change="onStakeChange"
+          :disabled="readOnlyFields.stake_or_district"
           class="mt-1 block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 sm:text-sm transition-colors"
+          :class="{
+            'opacity-75 cursor-not-allowed': readOnlyFields.stake_or_district,
+          }"
         >
           <option value="">{{ $t("participant_form.select_stake") }}</option>
           <option v-for="stake in stakeOptions" :key="stake" :value="stake">
@@ -66,8 +79,11 @@
           id="ward_or_branch"
           v-model="form.ward_or_branch"
           required
-          :disabled="!form.stake_or_district"
+          :disabled="readOnlyFields.ward_or_branch"
           class="mt-1 block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 sm:text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          :class="{
+            'opacity-75 cursor-not-allowed': readOnlyFields.stake_or_district,
+          }"
         >
           <option value="">{{ $t("participant_form.select_ward") }}</option>
           <option v-for="ward in filteredWards" :key="ward" :value="ward">
@@ -798,19 +814,21 @@ const displayedPages = computed(() => {
   return pages;
 });
 
-// Computed para mostrar la cama actual
-const currentBedDisplay = computed(() => {
-  if (!form.unique_bed_key) {
-    return t("bed_update.participant_form.no_bed_assigned");
-  }
+// Agregar dentro de <script setup>
+const isEditMode = computed(() => props.mode === "edit");
 
-  // Si tenemos información detallada de la cama, la mostramos
-  if (form.building && form.floor && form.bed) {
-    return `Edificio: ${form.building} - Piso: ${form.floor} - Número: ${form.bed}`;
-  }
+// Determinar qué campos son de solo lectura en modo edición
+const readOnlyFields = computed(() => {
+  if (!isEditMode.value) return {}; // Nada es readonly en modo creación
 
-  // Si solo tenemos la clave, mostramos eso
-  return form.unique_bed_key;
+  return {
+    // Define aquí qué campos serán readonly en modo edición
+    stake_or_district: true,
+    ward_or_branch: true,
+    full_name: true,
+    age: true,
+    // Puedes añadir más campos según necesites
+  };
 });
 
 // Inicializar formulario con datos del participante

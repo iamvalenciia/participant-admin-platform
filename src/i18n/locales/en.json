@@ -21,7 +21,8 @@
       "ward": "Ward/Branch",
       "group_company": "Group/Company",
       "actions": "Actions",
-      "view": "View"
+      "view": "View",
+      "check_in": "Check-in"
     },
     "create_modal": {
       "title": "Create New Participant",
@@ -96,7 +97,9 @@
       "of": "of",
       "results": "results",
       "previous_short": "Prev",
-      "next_short": "Next"
+      "next_short": "Next",
+      "previous": "Previous",
+      "next": "Next"
     },
     "title": "Advanced Search",
     "subtitle": "Filter participants by company, stake and ward",
@@ -160,7 +163,11 @@
       "group_company": "Group/Company",
       "view": "View",
       "actions": "Actions",
-      "bed": "Bed"
+      "bed": "Bed",
+      "check_in": "Check-in",
+      "variety_show": "Variety Show",
+      "musical": "Musical Program",
+      "phone": "Phone Submitted"
     }
   },
   "bed_update": {

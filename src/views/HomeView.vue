@@ -367,8 +367,5 @@ onMounted(async () => {
     searchHasStarted.value = false;
     participantsStore.participants = [];
   }
-
-  // Configurar suscripción en tiempo real
-  participantsStore.setupRealtimeSubscription();
 });
 </script>

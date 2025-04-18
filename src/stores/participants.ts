@@ -68,33 +68,6 @@ export const useParticipantsStore = defineStore("participants", () => {
     }
   };
 
-  // Configurar suscripción en tiempo real
-  const setupRealtimeSubscription = () => {
-    if (!authStore.isAuthenticated()) return;
-
-    // Primero eliminamos cualquier suscripción anterior
-    supabase.removeAllChannels();
-
-    // Configurar la nueva suscripción
-    const channel = supabase
-      .channel("public:participants")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "participants",
-        },
-        (payload) => {
-          // Actualizar la lista al recibir cambios
-          fetchParticipants(searchQuery.value);
-        }
-      )
-      .subscribe();
-
-    return channel;
-  };
-
   // Obtener un participante por ID
   const fetchParticipantById = async (id: number) => {
     // if (!authStore.isAuthenticated()) return;
@@ -244,6 +217,5 @@ export const useParticipantsStore = defineStore("participants", () => {
     createParticipant,
     updateParticipant,
     deleteParticipant,
-    setupRealtimeSubscription,
   };
 });
