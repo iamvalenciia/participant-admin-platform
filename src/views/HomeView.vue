@@ -216,7 +216,7 @@
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
     >
       <div
-        class="bg-amber-50 dark:bg-teal-950 rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto"
+        class="bg-amber-50 dark:bg-teal-950 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] my-4 overflow-y-auto"
       >
         <div class="p-6">
           <div class="flex justify-between items-center mb-6">

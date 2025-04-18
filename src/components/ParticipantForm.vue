@@ -110,6 +110,79 @@
         />
       </div>
 
+      <!-- Participation Status Section -->
+      <div class="sm:col-span-2 mt-4 mb-6">
+        <h3
+          class="text-base font-semibold text-teal-800 dark:text-amber-100 mb-4"
+        >
+          {{
+            $t("participant_form.participation_status") ||
+            "Estado de Participación"
+          }}
+        </h3>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <!-- Check-in Status -->
+          <div
+            class="bg-white dark:bg-teal-900/30 rounded-lg p-4 flex items-center border border-amber-200 dark:border-teal-800"
+          >
+            <div class="mr-3 flex-shrink-0">
+              <input
+                id="arrival_registered"
+                v-model="form.arrival_registered"
+                type="checkbox"
+                class="h-4 w-4 text-teal-600 focus:ring-yellow-500 border-amber-300 dark:border-teal-700 rounded"
+              />
+            </div>
+            <label
+              for="arrival_registered"
+              class="text-sm font-medium text-teal-700 dark:text-amber-200"
+            >
+              {{ $t("participant_form.arrival_registered") }}
+            </label>
+          </div>
+
+          <!-- Variety Show Status -->
+          <div
+            class="bg-white dark:bg-teal-900/30 rounded-lg p-4 flex items-center border border-amber-200 dark:border-teal-800"
+          >
+            <div class="mr-3 flex-shrink-0">
+              <input
+                id="variety_show"
+                v-model="form.variety_show"
+                type="checkbox"
+                class="h-4 w-4 text-teal-600 focus:ring-yellow-500 border-amber-300 dark:border-teal-700 rounded"
+              />
+            </div>
+            <label
+              for="variety_show"
+              class="text-sm font-medium text-teal-700 dark:text-amber-200"
+            >
+              {{ $t("participant_form.variety_show") }}
+            </label>
+          </div>
+
+          <!-- Musical Program Status -->
+          <div
+            class="bg-white dark:bg-teal-900/30 rounded-lg p-4 flex items-center border border-amber-200 dark:border-teal-800"
+          >
+            <div class="mr-3 flex-shrink-0">
+              <input
+                id="musical_program"
+                v-model="form.musical_program"
+                type="checkbox"
+                class="h-4 w-4 text-teal-600 focus:ring-yellow-500 border-amber-300 dark:border-teal-700 rounded"
+              />
+            </div>
+            <label
+              for="musical_program"
+              class="text-sm font-medium text-teal-700 dark:text-amber-200"
+            >
+              {{ $t("participant_form.musical_program") }}
+            </label>
+          </div>
+        </div>
+      </div>
+
       <div class="sm:col-span-2">
         <label
           for="medical_treatment"
@@ -117,12 +190,12 @@
         >
           {{ $t("participant_form.medical_treatment") }}
         </label>
-        <textarea
+        <input
           id="medical_treatment"
           v-model="form.medical_treatment"
           rows="3"
           class="mt-1 block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 sm:text-sm transition-colors"
-        ></textarea>
+        />
       </div>
 
       <div class="sm:col-span-2">
@@ -132,12 +205,12 @@
         >
           {{ $t("participant_form.allergies") }}
         </label>
-        <textarea
+        <input
           id="allergies"
           v-model="form.allergies"
           rows="3"
           class="mt-1 block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 sm:text-sm transition-colors"
-        ></textarea>
+        />
       </div>
 
       <!-- Sección de asignación de cama con selector -->

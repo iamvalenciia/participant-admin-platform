@@ -56,7 +56,15 @@
     "cancel": "Cancel",
     "save": "Save",
     "saving": "Saving...",
-    "unassigned": "Unassigned"
+    "unassigned": "Unassigned",
+    "participation_status": "Participation Status",
+    "arrival_registered": "Check-in completed",
+    "variety_show": "Variety Show",
+    "musical_program": "Musical Program",
+    "status_confirmed": "Confirmed",
+    "bed_information": "Bed information",
+    "building": "Building",
+    "floor": "Floor"
   },
   "participant_details": {
     "back_to_list": "Back to list",
@@ -138,6 +146,11 @@
   },
   "common": {
     "logout": "Logout",
-    "language": "🌎 Switch to Spanish"
+    "language": "🌎 Switch to Spanish",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "footer": {
+    "message": "Participant Management Platform of the FSY"
   }
 }

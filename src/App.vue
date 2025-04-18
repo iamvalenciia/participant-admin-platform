@@ -12,8 +12,7 @@
         </router-view>
       </main>
       <footer class="py-4 text-center text-sm text-gray-500 dark:text-gray-400">
-        &copy; {{ new Date().getFullYear() }} - Sistema de Gestión de
-        Participantes del PFJ
+        &copy; {{ new Date().getFullYear() }} - {{ $t("footer.message") }}
       </footer>
     </div>
   </div>

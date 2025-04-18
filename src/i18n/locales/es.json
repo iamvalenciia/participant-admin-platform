@@ -40,6 +40,9 @@
     "theme_dark": "🌙 Cambiar a tema oscuro"
   },
   "participant_form": {
+    "personal_information": "Información Personal",
+    "health_information": "Información de Salud",
+    "accommodation": "Alojamiento",
     "full_name": "Nombre completo",
     "age": "Edad",
     "stake_or_district": "Estaca/Distrito",
@@ -56,7 +59,15 @@
     "cancel": "Cancelar",
     "save": "Guardar",
     "saving": "Guardando...",
-    "unassigned": "No asignada"
+    "unassigned": "No asignada",
+    "participation_status": "Estado de participación",
+    "arrival_registered": "Entrada registrada",
+    "variety_show": "Espectáculo de variedades",
+    "musical_program": "Programa musical",
+    "status_confirmed": "Confirmado",
+    "bed_information": "Información de cama",
+    "building": "Edificio",
+    "floor": "Piso"
   },
   "participant_details": {
     "back_to_list": "Volver a la lista",
@@ -139,6 +150,11 @@
   },
   "common": {
     "logout": "Cerrar Sesión",
-    "language": "🌎 Cambiar a inglés"
+    "language": "🌎 Cambiar a inglés",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "footer": {
+    "message": "Plataforma de Administración de Participantes del PFJ"
   }
 }

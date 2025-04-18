@@ -21,6 +21,9 @@ export default interface Database {
           floor: string | null;
           bed: number | null;
           gender: string;
+          arrival_registered: boolean;
+          variety_show: boolean;
+          musical_program: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -38,6 +41,9 @@ export default interface Database {
           floor?: string | null;
           bed?: number | null;
           gender: string;
+          arrival_registered: boolean;
+          variety_show: boolean;
+          musical_program: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -55,6 +61,9 @@ export default interface Database {
           floor?: string | null;
           bed?: number | null;
           gender?: string;
+          arrival_registered: boolean;
+          variety_show: boolean;
+          musical_program: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -144,6 +153,9 @@ export default interface Database {
           building_name: string | null;
           floor_code: string | null;
           bed_number: number | null;
+          arrival_registered: boolean;
+          variety_show: boolean;
+          musical_program: boolean;
           assigned_at: string | null;
           assignment_id: number | null;
         };
@@ -183,8 +195,11 @@ export interface ParticipantType {
   building: string | null;
   floor: string | null;
   bed: number | null;
-  unique_bed_key: string | null; // Nuevo campo añadido
+  unique_bed_key: string | null;
   bed_info?: BedAssignmentInfo | null;
+  arrival_registered: boolean;
+  variety_show: boolean;
+  musical_program: boolean;
   created_at?: string;
   updated_at?: string;
 }
