@@ -153,7 +153,7 @@
             </label>
             <select
               id="stake"
-              v-model="filters.stake"
+              v-model="filters.stake_or_district"
               @change="onStakeChange"
               class="w-full px-3 py-2 text-sm border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
             >
@@ -188,8 +188,8 @@
             </label>
             <select
               id="ward"
-              v-model="filters.ward"
-              :disabled="!filters.stake"
+              v-model="filters.ward_or_branch"
+              :disabled="!filters.stake_or_district"
               class="w-full px-3 py-2 text-sm border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <option value="">
@@ -223,7 +223,7 @@
             </label>
             <select
               id="bed"
-              v-model="filters.bed"
+              v-model="filters.unique_bed_key"
               class="w-full px-3 py-2 text-sm border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
             >
               <option value="">
@@ -241,17 +241,6 @@
                   $t("advancedSearch.filters.bed_unassigned") ||
                   "Sin cama asignada"
                 }}
-              </option>
-              <option
-                v-if="availableBuildings && availableBuildings.length > 0"
-                v-for="building in availableBuildings"
-                :key="'bldg-' + building"
-                :value="'building-' + building"
-              >
-                {{
-                  $t("advancedSearch.filters.building_prefix") || "Edificio"
-                }}:
-                {{ building }}
               </option>
             </select>
           </div>
@@ -286,7 +275,7 @@
             </label>
             <select
               id="arrival-registered"
-              v-model="filters.arrivalRegistered"
+              v-model="filters.arrival_registered"
               class="w-full px-3 py-2 text-sm border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
             >
               <option value="">
@@ -319,7 +308,7 @@
             </label>
             <select
               id="variety-show"
-              v-model="filters.varietyShow"
+              v-model="filters.variety_show"
               class="w-full px-3 py-2 text-sm border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
             >
               <option value="">
@@ -356,7 +345,7 @@
             </label>
             <select
               id="musical-program"
-              v-model="filters.musicalProgram"
+              v-model="filters.musical_program"
               class="w-full px-3 py-2 text-sm border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
             >
               <option value="">
@@ -392,7 +381,7 @@
             </label>
             <select
               id="phone-submitted"
-              v-model="filters.phoneSubmitted"
+              v-model="filters.phone_submitted"
               class="w-full px-3 py-2 text-sm border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 transition-colors"
             >
               <option value="">
@@ -417,7 +406,7 @@
         <div class="mt-4 flex items-center">
           <input
             id="staff-created"
-            v-model="filters.staffCreated"
+            v-model="filters.staff_created"
             type="checkbox"
             class="h-4 w-4 text-teal-600 focus:ring-yellow-500 border-amber-300 dark:border-teal-700 rounded"
           />
@@ -1080,19 +1069,16 @@ const stakeWardMap = {
 // Options computed
 const stakeOptions = computed(() => Object.keys(stakeWardMap));
 
-// Añade esta línea junto con tus otras declaraciones ref
-const availableBuildings = ref(["Ammon", "Moroni", "Nefi", "Helamán"]);
-
 const filters = ref({
   company: "",
-  stake: "",
-  ward: "",
-  bed: "", // Nuevo filtro para camas
-  staffCreated: false,
-  arrivalRegistered: "",
-  varietyShow: "",
-  musicalProgram: "",
-  phoneSubmitted: "",
+  stake_or_district: "", // Cambio de stake
+  ward_or_branch: "", // Cambio de ward
+  unique_bed_key: "", // Mantén esto como "bed" ya que así lo usas en tu store
+  staff_created: false, // Cambio de staffCreated
+  arrival_registered: "", // Cambio de arrivalRegistered
+  variety_show: "", // Cambio de varietyShow
+  musical_program: "", // Cambio de musicalProgram
+  phone_submitted: "", // Cambio de phoneSubmitted
 });
 
 // Función para truncar el nombre de la estaca
@@ -1133,28 +1119,32 @@ const searchPerformed = ref(false);
 
 // Filtro de barrios basado en la estaca seleccionada
 const filteredWards = computed(() => {
-  if (!filters.value.stake) return [];
-  return stakeWardMap[filters.value.stake as keyof typeof stakeWardMap] || [];
+  if (!filters.value.stake_or_district) return [];
+  return (
+    stakeWardMap[
+      filters.value.stake_or_district as keyof typeof stakeWardMap
+    ] || []
+  );
 });
 
 // Manejo de cambio de estaca
 const onStakeChange = () => {
   // Si cambia la estaca, resetear el barrio seleccionado
-  filters.value.ward = "";
+  filters.value.ward_or_branch = "";
 };
 
 // Función para limpiar todos los filtros (actualizada)
 const clearFilters = () => {
   filters.value = {
     company: "",
-    stake: "",
-    ward: "",
-    bed: "", // No olvidar limpiar este también
-    staffCreated: false,
-    arrivalRegistered: "",
-    varietyShow: "",
-    musicalProgram: "",
-    phoneSubmitted: "",
+    stake_or_district: "", // cambiado de stake
+    ward_or_branch: "", // cambiado de ward
+    unique_bed_key: "", // cambiado de bed, suponiendo que este es el nombre en el store
+    staff_created: false, // cambiado de staffCreated
+    arrival_registered: "", // cambiado de arrivalRegistered
+    variety_show: "", // cambiado de varietyShow
+    musical_program: "", // cambiado de musicalProgram
+    phone_submitted: "", // cambiado de phoneSubmitted
   };
 };
 
@@ -1233,20 +1223,20 @@ const searchParticipants = async () => {
   currentPage.value = 1;
 
   // Log para verificar qué valor está enviándose
-  console.log("Filtro de cama:", filters.value.bed);
+  console.log("Filtro de cama:", filters.value.unique_bed_key);
 
   try {
     // Usa el nuevo store para la búsqueda avanzada
     const result = await advancedSearchStore.searchParticipants({
       company: filters.value.company,
-      stake_or_district: filters.value.stake,
-      ward_or_branch: filters.value.ward,
-      staff_created: filters.value.staffCreated,
-      arrival_registered: filters.value.arrivalRegistered,
-      variety_show: filters.value.varietyShow,
-      musical_program: filters.value.musicalProgram,
-      phone_submitted: filters.value.phoneSubmitted,
-      bed: filters.value.bed, // Añadir el nuevo filtro de cama
+      stake_or_district: filters.value.stake_or_district,
+      ward_or_branch: filters.value.ward_or_branch,
+      staff_created: filters.value.staff_created,
+      arrival_registered: filters.value.arrival_registered,
+      variety_show: filters.value.variety_show,
+      musical_program: filters.value.musical_program,
+      phone_submitted: filters.value.phone_submitted,
+      unique_bed_key: filters.value.unique_bed_key, // Añadir el nuevo filtro de cama
     });
 
     if (result.success) {
@@ -1277,17 +1267,6 @@ const columnVisibility = ref({
   groupCompany: true, // Grupo/Compañía (sm+)
   bed: true, // Cama (sm+)
 });
-
-// Función para restablecer visibilidad por defecto
-const resetColumnVisibility = () => {
-  columnVisibility.value = {
-    age: true,
-    stake: true,
-    ward: true,
-    groupCompany: true,
-    bed: true,
-  };
-};
 
 // Guardar la configuración de columnas en localStorage
 watch(
@@ -1342,9 +1321,38 @@ onMounted(async () => {
   }
 
   // Cargar los datos iniciales si hay filtros guardados
+  // arreglar error
   if (advancedSearchStore.hasFilters) {
-    filters.value = advancedSearchStore.lastFilters;
-    await searchParticipants();
+    // Cargar los datos iniciales si hay filtros guardados
+    if (advancedSearchStore.hasFilters) {
+      const savedFilters = advancedSearchStore.lastFilters;
+
+      // Fusionar los filtros guardados con valores por defecto
+      filters.value = {
+        company: savedFilters.company?.toString() || "",
+        stake_or_district: savedFilters.stake_or_district || "",
+        ward_or_branch: savedFilters.ward_or_branch || "",
+        unique_bed_key: savedFilters.bed || "",
+        staff_created: savedFilters.staff_created || false,
+        arrival_registered:
+          typeof savedFilters.arrival_registered === "boolean"
+            ? savedFilters.arrival_registered.toString()
+            : savedFilters.arrival_registered || "",
+        variety_show:
+          typeof savedFilters.variety_show === "boolean"
+            ? savedFilters.variety_show.toString()
+            : savedFilters.variety_show || "",
+        musical_program:
+          typeof savedFilters.musical_program === "boolean"
+            ? savedFilters.musical_program.toString()
+            : savedFilters.musical_program || "",
+        phone_submitted:
+          typeof savedFilters.phone_submitted === "boolean"
+            ? savedFilters.phone_submitted.toString()
+            : savedFilters.phone_submitted || "",
+      };
+      await searchParticipants();
+    }
   }
 });
 </script>

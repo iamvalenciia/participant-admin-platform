@@ -8,6 +8,11 @@ interface AdvancedSearchFilters {
   stake_or_district?: string;
   ward_or_branch?: string;
   staff_created?: boolean;
+  unique_bed_key?: string; // Cambia por el nombre usado en tu componente
+  arrival_registered?: string | boolean;
+  variety_show?: string | boolean;
+  musical_program?: string | boolean;
+  phone_submitted?: string | boolean;
   [key: string]: any;
 }
 
@@ -74,17 +79,17 @@ export const useAdvancedSearchStore = defineStore("advancedSearch", () => {
       }
 
       // Aplicar filtro de cama (debug específico para este filtro)
-      if (filters.bed) {
-        console.log("Aplicando filtro de cama:", filters.bed);
+      if (filters.unique_bed_key) {
+        console.log("Aplicando filtro de cama:", filters.unique_bed_key);
 
-        if (filters.bed === "assigned") {
+        if (filters.unique_bed_key === "assigned") {
           console.log("Buscando camas asignadas (unique_bed_key NO es null)");
           query = query.not("unique_bed_key", "is", null);
-        } else if (filters.bed === "unassigned") {
+        } else if (filters.unique_bed_key === "unassigned") {
           console.log("Buscando camas NO asignadas (unique_bed_key ES null)");
           query = query.is("unique_bed_key", null);
-        } else if (filters.bed.startsWith("building-")) {
-          const building = filters.bed.replace("building-", "");
+        } else if (filters.unique_bed_key.startsWith("building-")) {
+          const building = filters.unique_bed_key.replace("building-", "");
           console.log(`Buscando camas en edificio: ${building}`);
           query = query.ilike("unique_bed_key", `${building}_%`);
         }
