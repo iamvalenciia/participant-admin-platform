@@ -202,5 +202,56 @@
     "message": "Participant Management Platform of the FSY",
     "developed_by": "Developed by Juan Pablo Valencia",
     "created_by": "Created by Juan Pablo Valencia"
+  },
+  "report": {
+    "title": "Reports Dashboard",
+    "subtitle": "Event statistics and metrics visualization",
+    "loading": "Loading data...",
+    "noData": "No data available",
+    "cards": {
+      "totalParticipants": "Total Participants",
+      "checkedIn": "Checked-In",
+      "bedAssignment": "Bed Assignment",
+      "phonesSubmitted": "Phones Submitted",
+      "participantsWithoutBeds": "Participants Without Beds",
+      "participantsWithoutBedsWarning": "These participants need bed assignment.",
+      "participantsWithoutBedsSuccess": "All participants have been assigned a bed."
+    },
+    "charts": {
+      "bedOccupancy": "Bed Occupancy",
+      "genderDistribution": "Gender Distribution",
+      "participantsByCompany": "Participants by Company",
+      "activitiesParticipation": "Activities Participation",
+      "buildingOccupancy": "Occupancy by Building and Floor",
+      "occupiedBeds": "Occupied Beds",
+      "availableBeds": "Available Beds",
+      "male": "Male",
+      "female": "Female",
+      "participants": "Participants",
+      "companies": "Companies",
+      "numberOfParticipants": "Number of participants",
+      "confirmed": "Confirmed",
+      "pending": "Pending",
+      "checkedIn": "Check-in",
+      "varietyShow": "Variety Show",
+      "musicalProgram": "Musical Program",
+      "phoneSubmission": "Phone Submission",
+      "buildings": "Buildings",
+      "numberOfBeds": "Number of beds"
+    },
+    "table": {
+      "building": "Building",
+      "floor": "Floor",
+      "totalBeds": "Total Beds",
+      "occupiedBeds": "Occupied Beds",
+      "availableBeds": "Available Beds",
+      "occupancyRate": "Occupancy Rate"
+    },
+    "pagination": {
+      "showing": "Showing",
+      "to": "to",
+      "of": "of",
+      "results": "results"
+    }
   }
 }

@@ -208,5 +208,56 @@
   "footer": {
     "message": "Plataforma de Administración de Participantes del PFJ",
     "created_by": "Creado por Juan Pablo Valencia"
+  },
+  "report": {
+    "title": "Panel de Reportes",
+    "subtitle": "Visualización de estadísticas y métricas del evento",
+    "loading": "Cargando datos...",
+    "noData": "No hay datos disponibles",
+    "cards": {
+      "totalParticipants": "Total de Participantes",
+      "checkedIn": "Registrados (Check-in)",
+      "bedAssignment": "Asignación de Camas",
+      "phonesSubmitted": "Teléfonos Entregados",
+      "participantsWithoutBeds": "Participantes sin Cama Asignada",
+      "participantsWithoutBedsWarning": "Se requiere asignar camas a estos participantes.",
+      "participantsWithoutBedsSuccess": "Todos los participantes tienen cama asignada."
+    },
+    "charts": {
+      "bedOccupancy": "Ocupación de Camas",
+      "genderDistribution": "Distribución por Género",
+      "participantsByCompany": "Participantes por Compañía",
+      "activitiesParticipation": "Participación en Actividades",
+      "buildingOccupancy": "Ocupación por Edificio y Piso",
+      "occupiedBeds": "Camas Ocupadas",
+      "availableBeds": "Camas Disponibles",
+      "male": "Hombres",
+      "female": "Mujeres",
+      "participants": "Participantes",
+      "companies": "Compañías",
+      "numberOfParticipants": "Número de participantes",
+      "confirmed": "Confirmados",
+      "pending": "Pendientes",
+      "checkedIn": "Check-in",
+      "varietyShow": "Show de Variedades",
+      "musicalProgram": "Programa Musical",
+      "phoneSubmission": "Entrega de Teléfono",
+      "buildings": "Edificios",
+      "numberOfBeds": "Número de camas"
+    },
+    "table": {
+      "building": "Edificio",
+      "floor": "Piso",
+      "totalBeds": "Camas Totales",
+      "occupiedBeds": "Camas Ocupadas",
+      "availableBeds": "Camas Disponibles",
+      "occupancyRate": "Tasa de Ocupación"
+    },
+    "pagination": {
+      "showing": "Mostrando",
+      "to": "a",
+      "of": "de",
+      "results": "resultados"
+    }
   }
 }
