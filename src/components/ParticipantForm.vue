@@ -45,6 +45,25 @@
 
       <div>
         <label
+          for="gender"
+          class="block text-sm font-medium text-teal-800 dark:text-amber-100"
+        >
+          {{ $t("participant_form.gender") }}
+        </label>
+        <select
+          id="gender"
+          v-model="form.gender"
+          required
+          class="mt-1 block w-full px-3 py-2 border border-amber-300 dark:border-teal-700 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-white dark:bg-teal-900 text-teal-800 dark:text-amber-100 sm:text-sm transition-colors"
+        >
+          <option value="">{{ $t("participant_form.select_gender") }}</option>
+          <option value="Masculino">{{ $t("participant_form.male") }}</option>
+          <option value="Femenino">{{ $t("participant_form.female") }}</option>
+        </select>
+      </div>
+
+      <div>
+        <label
           for="stake_or_district"
           class="block text-sm font-medium text-teal-800 dark:text-amber-100"
         >
@@ -752,6 +771,7 @@ const form = reactive<Partial<Participant>>({
   ward_or_branch: "",
   group: 0,
   company: 0,
+  gender: "",
   medical_treatment: "",
   allergies: "",
   unique_bed_key: null,

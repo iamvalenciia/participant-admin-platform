@@ -74,51 +74,74 @@
         </div>
 
         <!-- Tarjeta: Asignación de camas -->
+        <!-- Tarjeta: Participantes con Llegada Confirmada y Cama Asignada -->
         <div
           class="bg-amber-50 dark:bg-teal-950 rounded-lg shadow-md p-6 border border-amber-200 dark:border-teal-800"
         >
           <h3
             class="text-lg font-semibold text-teal-800 dark:text-amber-100 mb-2"
           >
-            {{ $t("report.cards.bedAssignment") || "Asignación de Camas" }}
+            {{
+              $t("report.cards.checkedInWithBeds") ||
+              "Llegada Confirmada con Cama"
+            }}
           </h3>
           <p class="text-3xl font-bold text-teal-600 dark:text-amber-300">
-            {{ reportSummary?.withBeds || 0 }} /
-            {{ reportSummary?.totalParticipants || 0 }}
+            {{ reportSummary?.checkedInWithBeds || 0 }} /
+            {{ reportSummary?.checkedIn || 0 }}
           </p>
           <div class="mt-2 bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
             <div
-              class="bg-blue-500 h-2.5 rounded-full"
+              class="bg-green-500 h-2.5 rounded-full"
               :style="`width: ${calculatePercentage(
-                reportSummary?.withBeds,
-                reportSummary?.totalParticipants
+                reportSummary?.checkedInWithBeds,
+                reportSummary?.checkedIn
               )}%`"
             ></div>
           </div>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+            {{
+              calculatePercentage(
+                reportSummary?.checkedInWithBeds,
+                reportSummary?.checkedIn
+              )
+            }}% de participantes confirmados tienen cama
+          </p>
         </div>
 
-        <!-- Tarjeta: Entrega de teléfonos -->
+        <!-- Tarjeta: Entrega de teléfonos (actualizada para participantes con check-in) -->
         <div
           class="bg-amber-50 dark:bg-teal-950 rounded-lg shadow-md p-6 border border-amber-200 dark:border-teal-800"
         >
           <h3
             class="text-lg font-semibold text-teal-800 dark:text-amber-100 mb-2"
           >
-            {{ $t("report.cards.phonesSubmitted") || "Teléfonos Entregados" }}
+            {{
+              $t("report.cards.checkedInPhonesSubmitted") ||
+              "Teléfonos Entregados (Registrados)"
+            }}
           </h3>
           <p class="text-3xl font-bold text-teal-600 dark:text-amber-300">
-            {{ reportSummary?.phonesSubmitted || 0 }} /
-            {{ reportSummary?.totalParticipants || 0 }}
+            {{ reportSummary?.checkedInPhoneSubmitted || 0 }} /
+            {{ reportSummary?.checkedIn || 0 }}
           </p>
           <div class="mt-2 bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
             <div
               class="bg-yellow-500 h-2.5 rounded-full"
               :style="`width: ${calculatePercentage(
-                reportSummary?.phonesSubmitted,
-                reportSummary?.totalParticipants
+                reportSummary?.checkedInPhoneSubmitted,
+                reportSummary?.checkedIn
               )}%`"
             ></div>
           </div>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+            {{
+              calculatePercentage(
+                reportSummary?.checkedInPhoneSubmitted,
+                reportSummary?.checkedIn
+              )
+            }}% de participantes confirmados entregaron teléfono
+          </p>
         </div>
       </div>
 
@@ -202,7 +225,7 @@
             class="text-lg font-semibold text-teal-800 dark:text-amber-100 mb-4"
           >
             {{
-              $t("report.charts.buildingOccupancy") ||
+              $t("report.charts.checkedInBuildingOccupancy") ||
               "Ocupación por Edificio y Piso"
             }}
           </h3>
@@ -365,8 +388,8 @@ const updateCharts = () => {
   }
 
   // 2. Gráfico de distribución por género
-  if (genderChart.value && reportSummary.value.genderDistribution) {
-    const { male, female } = reportSummary.value.genderDistribution;
+  if (genderChart.value && reportSummary.value.checkedInGenderDistribution) {
+    const { male, female } = reportSummary.value.checkedInGenderDistribution;
 
     chartInstances.value.gender = new Chart(genderChart.value, {
       type: "pie",
@@ -389,6 +412,16 @@ const updateCharts = () => {
         plugins: {
           legend: {
             position: "bottom",
+          },
+          title: {
+            display: true,
+            text: t(
+              "report.charts.checkedInOnly",
+              "Solo participantes registrados"
+            ),
+            font: {
+              size: 12,
+            },
           },
         },
       },
@@ -437,10 +470,7 @@ const updateCharts = () => {
         plugins: {
           title: {
             display: true,
-            font: {
-              size: 14,
-              weight: "bold",
-            },
+            text: t("report.charts.checkedInOnly"),
           },
           legend: {
             display: true,
@@ -479,16 +509,16 @@ const updateCharts = () => {
 
     const confirmed = [
       reportSummary.value.checkedIn || 0,
-      reportSummary.value.varietyShowConfirmed || 0,
-      reportSummary.value.musicalProgramConfirmed || 0,
-      reportSummary.value.phonesSubmitted || 0,
+      reportSummary.value.checkedInVarietyShowConfirmed || 0,
+      reportSummary.value.checkedInMusicalProgramConfirmed || 0,
+      reportSummary.value.checkedInPhoneSubmitted || 0,
     ];
 
     const pending = [
       reportSummary.value.pendingCheckIn || 0,
-      reportSummary.value.varietyShowPending || 0,
-      reportSummary.value.musicalProgramPending || 0,
-      reportSummary.value.phonesPending || 0,
+      reportSummary.value.checkedInVarietyShowPending || 0,
+      reportSummary.value.checkedInMusicalProgramPending || 0,
+      reportSummary.value.checkedInPhonePending || 0,
     ];
 
     chartInstances.value.activities = new Chart(activitiesChart.value, {
@@ -517,6 +547,16 @@ const updateCharts = () => {
           legend: {
             position: "bottom",
           },
+          title: {
+            display: true,
+            text: t(
+              "report.charts.checkedInActivities",
+              "Actividades de participantes registrados"
+            ),
+            font: {
+              size: 12,
+            },
+          },
         },
         scales: {
           y: {
@@ -539,14 +579,24 @@ const updateCharts = () => {
   }
 
   // 5. Gráfico de ocupación por edificio
-  if (buildingOccupancyChart.value && reportSummary.value.byBuilding) {
+  if (
+    buildingOccupancyChart.value &&
+    reportSummary.value.checkedInByBuilding &&
+    reportSummary.value.byBuilding
+  ) {
     const buildings = Object.keys(reportSummary.value.byBuilding).sort();
+
+    // Para cada edificio, obtener camas ocupadas por participantes con check-in
     const occupied = buildings.map(
-      (b) => reportSummary.value?.byBuilding[b]?.occupied || 0
+      (b) => reportSummary.value?.checkedInByBuilding[b]?.occupied || 0
     );
+
+    // Camas disponibles (total - ocupadas por participantes con check-in)
     const available = buildings.map((b) => {
       const buildingData = reportSummary.value?.byBuilding[b];
-      return (buildingData?.total || 0) - (buildingData?.occupied || 0);
+      const occupiedWithCheckIn =
+        reportSummary.value?.checkedInByBuilding[b]?.occupied || 0;
+      return (buildingData?.total || 0) - occupiedWithCheckIn;
     });
 
     chartInstances.value.building = new Chart(buildingOccupancyChart.value, {
@@ -555,7 +605,10 @@ const updateCharts = () => {
         labels: buildings,
         datasets: [
           {
-            label: t("report.charts.occupiedBeds", "Camas Ocupadas"),
+            label: t(
+              "report.charts.checkedInOccupiedBeds",
+              "Camas Ocupadas (Registrados)"
+            ),
             data: occupied,
             backgroundColor: colors.occupied,
             borderWidth: 1,
@@ -574,6 +627,12 @@ const updateCharts = () => {
         plugins: {
           legend: {
             position: "bottom",
+          },
+          title: {
+            display: true,
+            font: {
+              size: 12,
+            },
           },
         },
         scales: {

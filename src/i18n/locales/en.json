@@ -66,7 +66,11 @@
     "status_confirmed": "Confirmed",
     "bed_information": "Bed information",
     "building": "Building",
-    "floor": "Floor"
+    "floor": "Floor",
+    "gender": "Gender",
+    "select_gender": "Select gender",
+    "male": "Male",
+    "female": "Female"
   },
   "participant_details": {
     "back_to_list": "Back to list",
@@ -214,52 +218,39 @@
     "title": "Reports Dashboard",
     "subtitle": "Event statistics and metrics visualization",
     "loading": "Loading data...",
-    "noData": "No data available",
     "cards": {
       "totalParticipants": "Total Participants",
-      "checkedIn": "Checked-In",
+      "checkedIn": "Checked-In Participants",
       "bedAssignment": "Bed Assignment",
+      "checkedInWithBeds": "Checked-In with Assigned Bed",
+      "checkedInPhonesSubmitted": "Phones Submitted (Checked-In)",
       "phonesSubmitted": "Phones Submitted",
-      "participantsWithoutBeds": "Participants Without Beds",
-      "participantsWithoutBedsWarning": "These participants need bed assignment.",
-      "participantsWithoutBedsSuccess": "All participants have been assigned a bed."
+      "participantsWithoutBeds": "Participants without Assigned Bed"
     },
     "charts": {
-      "checkedInByCompany": "Participants that confirmed their arrival by company",
       "bedOccupancy": "Bed Occupancy",
       "genderDistribution": "Gender Distribution",
-      "participantsByCompany": "Participants by Company",
-      "activitiesParticipation": "Activities Participation",
-      "buildingOccupancy": "Occupancy by Building and Floor",
-      "occupiedBeds": "Occupied Beds",
-      "availableBeds": "Available Beds",
+      "checkedInByCompany": "Participants by Company",
+      "activitiesParticipation": "Activity Participation",
+      "buildingOccupancy": "Building and Floor Occupancy",
       "male": "Male",
       "female": "Female",
-      "participants": "Participants",
-      "companies": "Companies",
-      "numberOfParticipants": "Number of participants",
-      "confirmed": "Confirmed",
-      "pending": "Pending",
-      "checkedIn": "Check-in",
+      "checkedIn": "Checked-In",
       "varietyShow": "Variety Show",
       "musicalProgram": "Musical Program",
       "phoneSubmission": "Phone Submission",
-      "buildings": "Buildings",
-      "numberOfBeds": "Number of beds"
-    },
-    "table": {
-      "building": "Building",
-      "floor": "Floor",
-      "totalBeds": "Total Beds",
+      "confirmed": "Confirmed",
+      "pending": "Pending",
+      "numberOfParticipants": "Number of Participants",
       "occupiedBeds": "Occupied Beds",
+      "checkedInOccupiedBeds": "Occupied Beds (Checked-In)",
       "availableBeds": "Available Beds",
-      "occupancyRate": "Occupancy Rate"
+      "buildings": "Buildings",
+      "numberOfBeds": "Number of Beds",
+      "checkedInOnly": "Only Checked-In Participants",
+      "checkedInActivities": "Activities of Checked-In Participants",
+      "checkedInBuildingOccupancy": "Occupancy by Checked-In Participants"
     },
-    "pagination": {
-      "showing": "Showing",
-      "to": "to",
-      "of": "of",
-      "results": "results"
-    }
+    "noData": "No data available"
   }
 }

@@ -68,7 +68,11 @@
     "status_confirmed": "Confirmado",
     "bed_information": "Información de cama",
     "building": "Edificio",
-    "floor": "Piso"
+    "floor": "Piso",
+    "gender": "Género",
+    "select_gender": "Seleccione género",
+    "male": "Masculino",
+    "female": "Femenino"
   },
   "participant_details": {
     "back_to_list": "Volver a la lista",
@@ -171,7 +175,9 @@
       "actions": "Acciones",
       "bed": "Cama",
       "check_in": "Check-in",
-      "variety_show": "Show de variedades"
+      "variety_show": "Show de variedades",
+      "musical": "Programa musical",
+      "phone": "Teléfono entregado"
     }
   },
   "bed_update": {
@@ -214,55 +220,42 @@
     "created_by": "Creado por Juan Pablo Valencia"
   },
   "report": {
-    "title": "Panel de Reportes",
-    "subtitle": "Visualización de estadísticas y métricas del evento",
-    "loading": "Cargando datos...",
-    "noData": "No hay datos disponibles",
+    "title": "Reports Dashboard",
+    "subtitle": "Event statistics and metrics visualization",
+    "loading": "Loading data...",
     "cards": {
       "totalParticipants": "Total de Participantes",
-      "checkedIn": "Registrados (Check-in)",
+      "checkedIn": "Participantes con llegada confirmada",
       "bedAssignment": "Asignación de Camas",
+      "checkedInWithBeds": "Cama asignada",
+      "checkedInPhonesSubmitted": "Teléfonos Entregados",
       "phonesSubmitted": "Teléfonos Entregados",
-      "participantsWithoutBeds": "Participantes sin Cama Asignada",
-      "participantsWithoutBedsWarning": "Se requiere asignar camas a estos participantes.",
-      "participantsWithoutBedsSuccess": "Todos los participantes tienen cama asignada."
+      "participantsWithoutBeds": "Participantes sin Cama Asignada"
     },
     "charts": {
-      "checkedInByCompany": "Participantes que confirmaron su llegada por Compañía",
       "bedOccupancy": "Ocupación de Camas",
       "genderDistribution": "Distribución por Género",
-      "participantsByCompany": "Participantes por Compañía",
+      "checkedInByCompany": "Participantes por Compañía",
       "activitiesParticipation": "Participación en Actividades",
       "buildingOccupancy": "Ocupación por Edificio y Piso",
-      "occupiedBeds": "Camas Ocupadas",
-      "availableBeds": "Camas Disponibles",
       "male": "Hombres",
       "female": "Mujeres",
-      "participants": "Participantes",
-      "companies": "Compañías",
-      "numberOfParticipants": "Número de participantes",
-      "confirmed": "Confirmados",
-      "pending": "Pendientes",
       "checkedIn": "Check-in",
       "varietyShow": "Show de Variedades",
       "musicalProgram": "Programa Musical",
       "phoneSubmission": "Entrega de Teléfono",
-      "buildings": "Edificios",
-      "numberOfBeds": "Número de camas"
-    },
-    "table": {
-      "building": "Edificio",
-      "floor": "Piso",
-      "totalBeds": "Camas Totales",
+      "confirmed": "Confirmados",
+      "pending": "Pendientes",
+      "numberOfParticipants": "Número de participantes",
       "occupiedBeds": "Camas Ocupadas",
+      "checkedInOccupiedBeds": "Camas Ocupadas (confirmados)",
       "availableBeds": "Camas Disponibles",
-      "occupancyRate": "Tasa de Ocupación"
+      "buildings": "Edificios",
+      "numberOfBeds": "Número de camas",
+      "checkedInOnly": "Solo participantes que confirmaron su llegada",
+      "checkedInActivities": "Actividades de participantes confirmados",
+      "checkedInBuildingOccupancy": "Ocupación por participantes confirmados"
     },
-    "pagination": {
-      "showing": "Mostrando",
-      "to": "a",
-      "of": "de",
-      "results": "resultados"
-    }
+    "noData": "No hay datos disponibles"
   }
 }
