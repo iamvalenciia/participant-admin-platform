@@ -166,7 +166,7 @@
             class="text-lg font-semibold text-teal-800 dark:text-amber-100 mb-4"
           >
             {{
-              $t("report.charts.participantsByCompany") ||
+              $t("report.charts.checkedInByCompany") ||
               "Participantes por Compañía"
             }}
           </h3>
@@ -395,33 +395,36 @@ const updateCharts = () => {
     });
   }
 
-  // 3. Gráfico de participantes por compañía
-  if (companyChart.value && reportSummary.value.byCompany) {
+  // 3. Gráfico de participantes por compañía (solo los que hicieron check-in)
+  if (companyChart.value && reportSummary.value.byCompanyCheckedIn) {
     // Obtener las claves y ordenarlas numéricamente
-    const companies = Object.keys(reportSummary.value.byCompany)
-      .map((c) => (isNaN(parseInt(c)) ? c : parseInt(c))) // Convertir a números donde sea posible
+    const companies = Object.keys(reportSummary.value.byCompanyCheckedIn)
+      .map((c) => (isNaN(parseInt(c)) ? c : parseInt(c)))
       .sort((a, b) => {
-        // Ordenar numéricamente primero (1, 2, 3...)
         if (typeof a === "number" && typeof b === "number") {
           return a - b;
         }
-        // Si uno es número y otro no, los números van primero
         if (typeof a === "number") return -1;
         if (typeof b === "number") return 1;
-        // Si ninguno es número, ordenar alfabéticamente
         return String(a).localeCompare(String(b));
       })
-      .map((c) => c.toString()); // Volver a convertir a string para las etiquetas
+      .map((c) => c.toString());
 
-    const counts = companies.map((c) => reportSummary.value?.byCompany[c] || 0);
+    const counts = companies.map(
+      (c) => reportSummary.value?.byCompanyCheckedIn[c] || 0
+    );
+
+    // Crear etiquetas personalizadas que incluyan el número de participantes
+    const customLabels = companies.map((company, index) => {
+      return `Compañía ${company} (${counts[index]})`;
+    });
 
     chartInstances.value.company = new Chart(companyChart.value, {
-      type: "bar",
+      type: "pie",
       data: {
-        labels: companies,
+        labels: customLabels,
         datasets: [
           {
-            label: t("report.charts.participants", "Participantes"),
             data: counts,
             backgroundColor: colors.company,
             borderWidth: 1,
@@ -432,29 +435,32 @@ const updateCharts = () => {
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
+          title: {
+            display: true,
+            font: {
+              size: 14,
+              weight: "bold",
+            },
+          },
           legend: {
-            display: false,
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              stepSize: 2, // Esto hace que los incrementos sean de 2 en 2
-            },
-            suggestedMax: 30, // Aumenta el valor máximo sugerido para dar más espacio
-            title: {
-              display: true,
-              text: t(
-                "report.charts.numberOfParticipants",
-                "Número de participantes"
-              ),
+            display: true,
+            position: "right",
+            labels: {
+              boxWidth: 15,
+              padding: 10,
             },
           },
-          x: {
-            title: {
-              display: true,
-              text: t("report.charts.companies", "Compañías"),
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const value: any = context.raw;
+                const total: any = context.chart.data.datasets[0].data.reduce(
+                  (a, b) => a + b,
+                  0
+                );
+                const percentage = Math.round((value / total) * 100);
+                return `${value} participantes (${percentage}%)`;
+              },
             },
           },
         },

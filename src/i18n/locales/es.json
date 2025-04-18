@@ -228,6 +228,7 @@
       "participantsWithoutBedsSuccess": "Todos los participantes tienen cama asignada."
     },
     "charts": {
+      "checkedInByCompany": "Participantes que confirmaron su llegada por Compañía",
       "bedOccupancy": "Ocupación de Camas",
       "genderDistribution": "Distribución por Género",
       "participantsByCompany": "Participantes por Compañía",

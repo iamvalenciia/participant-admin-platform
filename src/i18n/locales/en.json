@@ -225,6 +225,7 @@
       "participantsWithoutBedsSuccess": "All participants have been assigned a bed."
     },
     "charts": {
+      "checkedInByCompany": "Participants that confirmed their arrival by company",
       "bedOccupancy": "Bed Occupancy",
       "genderDistribution": "Gender Distribution",
       "participantsByCompany": "Participants by Company",

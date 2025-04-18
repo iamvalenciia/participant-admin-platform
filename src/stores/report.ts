@@ -8,6 +8,7 @@ interface ReportData {
   data?: any[];
   error?: string;
   summary?: {
+    byCompanyCheckedIn: Record<string, number>;
     totalParticipants: number;
     withBeds: number;
     withoutBeds: number;
@@ -90,6 +91,7 @@ export const useReportStore = defineStore("report", () => {
           female: 0,
         },
         byCompany: {} as Record<string, number>,
+        byCompanyCheckedIn: {} as Record<string, number>,
         byGroup: {} as Record<string, number>,
         byBuilding: {} as Record<
           string,
@@ -221,6 +223,13 @@ export const useReportStore = defineStore("report", () => {
         // Agrupación por compañía
         const company = participant.company || "Sin asignar";
         summary.byCompany[company] = (summary.byCompany[company] || 0) + 1;
+
+        // Agrupación por compañía solo de los que hicieron check-in
+        if (participant.arrival_registered) {
+          const company = participant.company || "Sin asignar";
+          summary.byCompanyCheckedIn[company] =
+            (summary.byCompanyCheckedIn[company] || 0) + 1;
+        }
 
         // Agrupación por grupo
         const group = participant.group || "Sin asignar";
