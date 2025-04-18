@@ -1358,25 +1358,8 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* Definición del breakpoint extra small (xs) para pantallas >= 480px */
-@media (min-width: 480px) {
-  .xs\:table-cell {
-    display: table-cell;
-  }
-
-  .xs\:hidden {
-    display: none;
-  }
-
-  .xs\:block {
-    display: block;
-  }
-
-  .xs\:flex {
-    display: flex;
-  }
-}
-
+/* Las clases xs: ahora se manejan directamente por Tailwind */
+/* Mantén solo los estilos para tooltip que no son relacionados a responsive */
 .tooltip {
   position: relative;
   display: inline-block;
