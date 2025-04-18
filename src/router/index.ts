@@ -38,7 +38,8 @@ const router = createRouter({
     },
     {
       path: "/:pathMatch(.*)*",
-      redirect: "/",
+      name: "not-found",
+      redirect: { name: "home" },
     },
   ],
 });
