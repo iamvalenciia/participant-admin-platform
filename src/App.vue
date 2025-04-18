@@ -1,23 +1,27 @@
 <template>
   <div class="app-container" :class="{ dark: isDark }">
     <div
-      class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300"
+      class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 flex flex-col"
     >
       <Navbar />
-      <main class="container mx-auto px-4 py-8 max-w-7xl">
+      <main class="container mx-auto px-4 py-8 max-w-7xl flex-grow">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
           </transition>
         </router-view>
       </main>
-      <footer class="py-4 text-center text-sm text-gray-500 dark:text-gray-400">
-        &copy; {{ new Date().getFullYear() }} - {{ $t("footer.message") }}
+      <footer
+        class="py-4 text-center text-sm text-gray-500 dark:text-gray-400 mt-auto"
+      >
+        <div>
+          &copy; {{ new Date().getFullYear() }} - {{ $t("footer.message") }}
+        </div>
+        <div>Juan Pablo Valencia</div>
       </footer>
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
 import { onMounted, computed } from "vue";
 import { useRouter } from "vue-router";

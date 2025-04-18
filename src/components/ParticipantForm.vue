@@ -180,6 +180,25 @@
               {{ $t("participant_form.musical_program") }}
             </label>
           </div>
+          <!-- Phone submitted Status -->
+          <div
+            class="bg-white dark:bg-teal-900/30 rounded-lg p-4 flex items-center border border-amber-200 dark:border-teal-800"
+          >
+            <div class="mr-3 flex-shrink-0">
+              <input
+                id="phone_submitted"
+                v-model="form.phone_submitted"
+                type="checkbox"
+                class="h-4 w-4 text-teal-600 focus:ring-yellow-500 border-amber-300 dark:border-teal-700 rounded"
+              />
+            </div>
+            <label
+              for="phone_submitted"
+              class="text-sm font-medium text-teal-700 dark:text-amber-200"
+            >
+              {{ $t("participant_form.phone_submitted") }}
+            </label>
+          </div>
         </div>
       </div>
 

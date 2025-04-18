@@ -26,15 +26,6 @@
       </div>
 
       <div class="flex flex-wrap gap-2">
-        <!-- Delete button -->
-        <button
-          v-if="!isEditing && userId === 'ca544172-2460-4959-9c59-7d7e1ad57568'"
-          @click="confirmDelete"
-          class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
-        >
-          {{ $t("participant_details.delete") }}
-        </button>
-
         <!-- Edit button -->
         <div v-if="isAuthenticated">
           <button
@@ -309,6 +300,48 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Phone delivered Status -->
+              <div
+                class="bg-white dark:bg-teal-900/30 rounded-lg p-4 flex items-center border border-amber-200 dark:border-teal-800"
+              >
+                <div class="mr-3 flex-shrink-0">
+                  <div
+                    v-if="participant.phone_submitted"
+                    class="w-5 h-5 bg-teal-500 dark:bg-amber-500 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-3 w-3 text-white"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    v-else
+                    class="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded-full"
+                  ></div>
+                </div>
+                <div>
+                  <div
+                    class="text-sm font-medium text-teal-700 dark:text-amber-200"
+                  >
+                    {{ $t("participant_form.phone_submitted") }}
+                  </div>
+                  <div
+                    class="text-xs text-gray-500 dark:text-gray-400"
+                    v-if="participant.phone_submitted"
+                  >
+                    {{ $t("participant_form.status_confirmed") }}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -421,6 +454,13 @@
         </div>
       </div>
     </div>
+    <button
+      v-if="participant?.staff_created"
+      @click="confirmDelete"
+      class="mt-4 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+    >
+      {{ $t("participant_details.delete") }}
+    </button>
 
     <div
       v-else

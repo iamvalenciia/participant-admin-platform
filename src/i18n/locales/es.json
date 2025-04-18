@@ -64,6 +64,7 @@
     "arrival_registered": "Entrada registrada",
     "variety_show": "Espectáculo de variedades",
     "musical_program": "Programa musical",
+    "phone_submitted": "Teléfono entregado",
     "status_confirmed": "Confirmado",
     "bed_information": "Información de cama",
     "building": "Edificio",
@@ -72,7 +73,7 @@
   "participant_details": {
     "back_to_list": "Volver a la lista",
     "edit_info": "Editar información",
-    "delete": "Eliminar",
+    "delete": "Eliminar Registro",
     "loading": "Cargando información del participante...",
     "try_again": "Intentar nuevamente",
     "not_found": "No se encontró información del participante.",
@@ -93,6 +94,14 @@
   },
 
   "advancedSearch": {
+    "pagination": {
+      "showing": "Mostrando del",
+      "to": "al",
+      "of": "de",
+      "results": "resultados",
+      "previous_short": "Antes",
+      "next_short": "Siguiente"
+    },
     "title": "Búsqueda Avanzada",
     "subtitle": "Filtra participantes por compañía, estaca y barrio",
     "error_message": "Error al buscar participantes. Por favor intenta nuevamente.",
@@ -107,7 +116,48 @@
       "ward": "Barrio",
       "all_wards": "Todos los barrios",
       "clear": "Limpiar filtros",
-      "search": "Buscar"
+      "search": "Buscar",
+      "staff_created": "Creado por el personal",
+      "status": "Estado",
+      "arrival": "Llegada",
+      "confirmed": "Confirmado",
+      "not_confirmed": "No confirmado",
+      "delivered_phone": "Teléfono entregado",
+      "not_delivered_phone": "Teléfono no entregado",
+      "title": "Filtros de búsqueda",
+      "help_text": "Utiliza estos filtros para encontrar participantes específicos. Puedes combinar varios filtros para una búsqueda más precisa.",
+      "help_item1": "Filtra por compañía, estaca o barrio para encontrar grupos específicos.",
+      "help_item2": "Utiliza los filtros de estado para ver quiénes han completado ciertas actividades.",
+      "help_item3": "Haz clic en 'Buscar' para aplicar todos los filtros seleccionados.",
+      "location_section": "Ubicación y organización",
+      "status_section": "Estado de participación",
+      "arrival_registered": "Check-in / Registro de llegada",
+      "any_checkin": "Todos (llegada)",
+      "checked_in": "Llegada registrada",
+      "not_checked_in": "Llegada pendiente",
+      "variety_show_label": "Show de variedades",
+      "any_show": "Todos",
+      "any_status": "Todos",
+      "variety_show_confirmed": "Participación confirmada",
+      "variety_show_pending": "Sin confirmar participación",
+      "musical_program_label": "Programa musical",
+      "any_musical": "Todos (musical)",
+      "musical_confirmed": "Participación confirmada",
+      "musical_pending": "Sin confirmar participación",
+      "phone_submitted_label": "Entrega de teléfono",
+      "any_phone": "Todos (teléfono)",
+      "phone_delivered": "Teléfono entregado",
+      "phone_not_delivered": "Teléfono pendiente de entrega",
+      "legend": "Leyenda de estados:",
+      "legend_checkin": "Check-in / Registro de llegada",
+      "legend_variety": "Show de variedades",
+      "legend_musical": "Programa musical",
+      "legend_phone": "Entrega de teléfono",
+      "bed": "Cama",
+      "all_beds": "Todas las camas",
+      "bed_assigned": "Cama asignada",
+      "bed_unassigned": "Sin cama asignada",
+      "building_prefix": "Edificio"
     },
     "table": {
       "name": "Nombre",
@@ -116,7 +166,8 @@
       "ward": "Barrio",
       "group_company": "Grupo/Compañía",
       "view": "Ver",
-      "actions": "Acciones"
+      "actions": "Acciones",
+      "bed": "Cama"
     }
   },
   "bed_update": {
@@ -155,6 +206,7 @@
     "no": "No"
   },
   "footer": {
-    "message": "Plataforma de Administración de Participantes del PFJ"
+    "message": "Plataforma de Administración de Participantes del PFJ",
+    "created_by": "Creado por Juan Pablo Valencia"
   }
 }

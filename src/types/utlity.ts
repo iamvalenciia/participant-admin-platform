@@ -24,6 +24,8 @@ export default interface Database {
           arrival_registered: boolean;
           variety_show: boolean;
           musical_program: boolean;
+          phone_submitted: boolean;
+          staff_created: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -44,6 +46,8 @@ export default interface Database {
           arrival_registered: boolean;
           variety_show: boolean;
           musical_program: boolean;
+          phone_submitted: boolean;
+          staff_created: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -64,6 +68,8 @@ export default interface Database {
           arrival_registered: boolean;
           variety_show: boolean;
           musical_program: boolean;
+          phone_submitted: boolean;
+          staff_created: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -156,6 +162,8 @@ export default interface Database {
           arrival_registered: boolean;
           variety_show: boolean;
           musical_program: boolean;
+          staff_created: boolean;
+          phone_submitted: boolean;
           assigned_at: string | null;
           assignment_id: number | null;
         };
@@ -200,6 +208,8 @@ export interface ParticipantType {
   arrival_registered: boolean;
   variety_show: boolean;
   musical_program: boolean;
+  phone_submitted: boolean;
+  staff_created: boolean;
   created_at?: string;
   updated_at?: string;
 }

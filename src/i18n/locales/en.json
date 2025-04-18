@@ -61,6 +61,7 @@
     "arrival_registered": "Check-in completed",
     "variety_show": "Variety Show",
     "musical_program": "Musical Program",
+    "phone_submitted": "Phone handed in",
     "status_confirmed": "Confirmed",
     "bed_information": "Bed information",
     "building": "Building",
@@ -69,7 +70,7 @@
   "participant_details": {
     "back_to_list": "Back to list",
     "edit_info": "Edit information",
-    "delete": "Delete",
+    "delete": "Delete Record",
     "loading": "Loading participant information...",
     "try_again": "Try again",
     "not_found": "Participant information not found.",
@@ -89,6 +90,14 @@
     }
   },
   "advancedSearch": {
+    "pagination": {
+      "showing": "Showing",
+      "to": "to",
+      "of": "of",
+      "results": "results",
+      "previous_short": "Prev",
+      "next_short": "Next"
+    },
     "title": "Advanced Search",
     "subtitle": "Filter participants by company, stake and ward",
     "error_message": "Error searching for participants. Please try again.",
@@ -103,7 +112,40 @@
       "ward": "Ward",
       "all_wards": "All wards",
       "clear": "Clear filters",
-      "search": "Search"
+      "search": "Search",
+      "staff_created": "Created by staff",
+      "status": "Status",
+      "arrival": "Arrival",
+      "checked_in": "Checked in",
+      "not_checked_in": "Not checked in",
+      "confirmed": "Confirmed",
+      "not_confirmed": "Not confirmed",
+      "delivered_phone": "Phone delivered",
+      "not_delivered_phone": "Phone not delivered",
+      "title": "Search Filters",
+      "help_text": "Use these filters to find specific participants. You can combine multiple filters for a more precise search.",
+      "help_item1": "Filter by company, stake, or ward to find specific groups.",
+      "help_item2": "Use the status filters to see who has completed certain activities.",
+      "help_item3": "Click on 'Search' to apply all selected filters.",
+      "location_section": "Location and Organization",
+      "status_section": "Participation Status",
+      "arrival_registered": "Check-in / Arrival",
+      "variety_show_label": "Variety Show",
+      "musical_program_label": "Musical Program",
+      "phone_submitted_label": "Phone Submitted",
+      "any_status": "All",
+      "legend": "Status Legend:",
+      "legend_checkin": "Check-in",
+      "legend_variety": "Variety Show",
+      "legend_musical": "Musical Program",
+      "legend_phone": "Phone Submitted",
+      "phone_delivered": "Delivered",
+      "phone_not_delivered": "Not Delivered",
+      "bed": "Bed",
+      "all_beds": "All beds",
+      "bed_assigned": "Assigned bed",
+      "bed_unassigned": "Unassigned bed",
+      "building_prefix": "Building"
     },
     "table": {
       "name": "Name",
@@ -112,7 +154,8 @@
       "ward": "Ward",
       "group_company": "Group/Company",
       "view": "View",
-      "actions": "Actions"
+      "actions": "Actions",
+      "bed": "Bed"
     }
   },
   "bed_update": {
@@ -151,6 +194,8 @@
     "no": "No"
   },
   "footer": {
-    "message": "Participant Management Platform of the FSY"
+    "message": "Participant Management Platform of the FSY",
+    "developed_by": "Developed by Juan Pablo Valencia",
+    "created_by": "Created by Juan Pablo Valencia"
   }
 }
