@@ -1036,6 +1036,8 @@ const paginatedParticipants = computed(() => {
 // Datos estáticos para las compañías (del 1 al 24)
 const companies = Array.from({ length: 24 }, (_, i) => i + 1);
 
+const showFilterHelp = ref(false);
+
 // Datos para estacas y barrios (con el formato provisto)
 const stakeWardMap = {
   "Esmeraldas Ecuador Stake": [
@@ -1078,6 +1080,9 @@ const stakeWardMap = {
 // Options computed
 const stakeOptions = computed(() => Object.keys(stakeWardMap));
 
+// Añade esta línea junto con tus otras declaraciones ref
+const availableBuildings = ref(["Ammon", "Moroni", "Nefi", "Helamán"]);
+
 const filters = ref({
   company: "",
   stake: "",
@@ -1091,7 +1096,7 @@ const filters = ref({
 });
 
 // Función para truncar el nombre de la estaca
-const truncateStake = (stake) => {
+const truncateStake = (stake: string) => {
   if (!stake) return "-";
 
   const firstWord = stake.split(" ")[0];
@@ -1099,7 +1104,7 @@ const truncateStake = (stake) => {
 };
 
 // Función para limpiar el nombre del barrio (quitar Ward/Branch)
-const cleanWardName = (ward) => {
+const cleanWardName = (ward: string) => {
   if (!ward) return "-";
 
   // Elimina " Ward" o " Branch" del final del nombre
@@ -1107,7 +1112,7 @@ const cleanWardName = (ward) => {
 };
 
 // Función para truncar el nombre completo a los dos primeros nombres
-const truncateName = (name) => {
+const truncateName = (name: string) => {
   if (!name) return "-";
 
   const nameParts = name.split(" ");
@@ -1129,7 +1134,7 @@ const searchPerformed = ref(false);
 // Filtro de barrios basado en la estaca seleccionada
 const filteredWards = computed(() => {
   if (!filters.value.stake) return [];
-  return stakeWardMap[filters.value.stake] || [];
+  return stakeWardMap[filters.value.stake as keyof typeof stakeWardMap] || [];
 });
 
 // Manejo de cambio de estaca
@@ -1201,7 +1206,7 @@ const displayedPageNumbers = computed(() => {
 });
 
 // Funciones de navegación
-const goToPage = (page) => {
+const goToPage = (page: any) => {
   currentPage.value = page;
 };
 

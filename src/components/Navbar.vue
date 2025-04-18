@@ -267,11 +267,6 @@
 
         <!-- Language selector in mobile menu -->
         <div class="pt-2 pb-1">
-          <div
-            class="px-3 py-2 text-base font-medium text-teal-800 dark:text-amber-100"
-          >
-            {{ $t("navbar.language") || "Language" }}:
-          </div>
           <div class="flex px-3 space-x-2">
             <button
               @click="

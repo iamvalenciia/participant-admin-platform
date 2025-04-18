@@ -12,10 +12,10 @@
         </router-view>
       </main>
       <footer
-        class="py-4 text-center text-sm text-gray-500 dark:text-gray-400 mt-auto"
+        class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400 mt-auto"
       >
         <div>
-          &copy; {{ new Date().getFullYear() }} - {{ $t("footer.message") }}
+          &copy; {{ new Date().getFullYear() }} - {{ $t("footer.message") }}.
         </div>
         <div>Juan Pablo Valencia</div>
       </footer>
