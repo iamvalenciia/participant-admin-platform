@@ -220,8 +220,8 @@
     "created_by": "Creado por Juan Pablo Valencia"
   },
   "report": {
-    "title": "Reports Dashboard",
-    "subtitle": "Event statistics and metrics visualization",
+    "title": "Panel de Reportes",
+    "subtitle": "Visualización de estadísticas y métricas del evento",
     "loading": "Loading data...",
     "cards": {
       "totalParticipants": "Total de Participantes",
