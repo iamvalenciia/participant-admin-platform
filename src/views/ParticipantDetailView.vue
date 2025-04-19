@@ -461,15 +461,6 @@
     >
       {{ $t("participant_details.delete") }}
     </button>
-
-    <div
-      v-else
-      class="bg-amber-50 dark:bg-teal-950 rounded-lg shadow p-6 text-center"
-    >
-      <p class="text-teal-700 dark:text-amber-200">
-        {{ $t("participant_details.not_found") }}
-      </p>
-    </div>
     <!-- Modal de confirmación para eliminar -->
     <div
       v-if="showDeleteModal"
