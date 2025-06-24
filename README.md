@@ -1,4 +1,4 @@
-# PFJ (FSY) Participant Management Platform
+# Participant Management Platform
 
 ## Project Overview
 
@@ -8,11 +8,10 @@ I designed and delivered a fully functional platform to help the conference staf
 
 Although the conference has now concluded and the system is no longer actively used by the staff, you are welcome to explore and test the platform:
 
-- **Website:** [https://lnkd.in/ekA6EtXQ](https://lnkd.in/ekA6EtXQ)
+- **Website:** [https://pfj-admin.netlify.app/login](https://pfj-admin.netlify.app/login)
 - **Login credentials:**
   - Email: `pfj2025@gmail.com`
   - Password: `pfj2025.`
-- **GitHub Repository:** [https://lnkd.in/eqRE7bZr](https://lnkd.in/eqRE7bZr)
 
 I'm grateful for this experience and excited to keep growing my skills in web development!
 
@@ -43,25 +42,3 @@ The database implements row-level security to ensure proper access controls are 
 - Git for version control
 - Node.js and npm for package management
 - Vue.js CLI for project scaffolding and building
-
-## Useful Websites
-
-The following resources were invaluable during development:
-
-- [Supabase Documentation](https://supabase.com/docs)
-- [Vue.js Documentation](https://vuejs.org/guide/introduction)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
-- [Pinia Documentation](https://pinia.vuejs.org/)
-- [Vue Router Documentation](https://router.vuejs.org/)
-- [Vue I18n Documentation](https://vue-i18n.intlify.dev/)
-
-## Future Work
-
-Items to implement in future iterations:
-
-- Add reporting functionality to generate participant lists and statistics
-- Resolve TypeScript strict mode errors throughout the codebase
-- Improve routing with proper guards and transitions
-- Implement bulk import/export functionality for participant data
-- Add offline capability with data synchronization
-- Create a mobile-optimized interface for on-site registration
