@@ -1,14 +1,32 @@
-# Overview
+# PFJ (FSY) Participant Management Platform
 
-As a software engineer, I developed a web application to manage participants in a church activity called PFJ (Para la Fortaleza de la Juventud/For the Strength of Youth). This solution addresses the challenge of maintaining consistent participant data across multiple church units, providing staff with an efficient management interface.
+## Project Overview
 
-The application integrates with Supabase cloud database services to store and retrieve participant information securely. Users can search for participants, view detailed information, make updates to assignments (groups, companies, room assignments), and track medical information when necessary.
+I had the opportunity to volunteer by creating a website for the For the Strength of Youth (FSY) Conference — a camp where young people learn more about our Savior, Jesus Christ.
 
-This project was created to streamline the administrative process for church staff managing youth activities, eliminating paper-based systems and reducing errors in participant information management.
+I designed and delivered a fully functional platform to help the conference staff manage participant registrations and records. This solution addresses the challenge of maintaining consistent participant data across multiple church units, providing staff with an efficient management interface. The application streamlines the administrative process, eliminating paper-based systems and reducing errors in participant information management.
 
-[Link of the Website ](https://pfj-admin.netlify.app/)
+Although the conference has now concluded and the system is no longer actively used by the staff, you are welcome to explore and test the platform:
 
-# Cloud Database
+- **Website:** [https://lnkd.in/ekA6EtXQ](https://lnkd.in/ekA6EtXQ)
+- **Login credentials:**
+  - Email: `pfj2025@gmail.com`
+  - Password: `pfj2025.`
+- **GitHub Repository:** [https://lnkd.in/eqRE7bZr](https://lnkd.in/eqRE7bZr)
+
+I'm grateful for this experience and excited to keep growing my skills in web development!
+
+## 🛠️ Built With
+
+- **Vue.js 3** with Composition API for the frontend framework
+- **TypeScript** as the primary programming language
+- **Supabase** JavaScript client for database interactions
+- **Pinia** for state management
+- **Vue Router** for application routing
+- **Vue I18n** for internationalization (supporting English and Spanish)
+- **Tailwind CSS** for styling
+
+## Cloud Database
 
 The application utilizes Supabase as its cloud database solution. Supabase provides a PostgreSQL database with real-time capabilities, authentication services, and a comprehensive API.
 
@@ -19,26 +37,14 @@ The database structure consists of two primary tables:
 
 The database implements row-level security to ensure proper access controls are in place for sensitive participant information.
 
-# Development Environment
-
-The development environment for this project included:
+## Development Environment
 
 - Visual Studio Code as the primary IDE
 - Git for version control
 - Node.js and npm for package management
 - Vue.js CLI for project scaffolding and building
 
-The application was built using:
-
-- TypeScript as the primary programming language
-- Vue.js 3 with Composition API for the frontend framework
-- Pinia for state management
-- Vue Router for application routing
-- Vue I18n for internationalization (supporting English and Spanish)
-- Supabase JavaScript client for database interactions
-  -Tailwind CSS for styling
-
-# Useful Websites
+## Useful Websites
 
 The following resources were invaluable during development:
 
@@ -49,7 +55,7 @@ The following resources were invaluable during development:
 - [Vue Router Documentation](https://router.vuejs.org/)
 - [Vue I18n Documentation](https://vue-i18n.intlify.dev/)
 
-# Future Work
+## Future Work
 
 Items to implement in future iterations:
 
