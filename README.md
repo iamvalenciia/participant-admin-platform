@@ -1,7 +1,5 @@
 # Participant Management Platform
 
-## Project Overview
-
 I had the opportunity to volunteer by creating a website for the For the Strength of Youth (FSY) Conference — a camp where young people learn more about our Savior, Jesus Christ.
 
 I designed and delivered a fully functional platform to help the conference staff manage participant registrations and records. This solution addresses the challenge of maintaining consistent participant data across multiple church units, providing staff with an efficient management interface. The application streamlines the administrative process, eliminating paper-based systems and reducing errors in participant information management.
